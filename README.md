@@ -15,7 +15,7 @@ RGB and Hex values are outputted to the right.
 An example of the type of image produced is available on the wiki page.
 
 TODO:
-~- Make text draggable around the canvas.~
+- ~Make text draggable around the canvas.~
 - Prettify CSS code and see what improvements can be made. Fear of redundancy or overused/misused attributes. Flexboxes are new to me.
 - See about having the app output the CSS code for use in other projects. 
 - Custom image overlays.
