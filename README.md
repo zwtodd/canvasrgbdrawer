@@ -12,6 +12,8 @@ as I found that to be the fastest due to the number of fonts in use (12 at time 
 
 RGB and Hex values are outputted to the right.
 
+An example of the type of image produced is available on the wiki page.
+
 TODO:
 - Make text draggable around the canvas.
 - Prettify CSS code and see what improvements can be made. Fear of redundancy or overused/misused attributes. Flexboxes are new to me.
