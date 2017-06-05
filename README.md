@@ -14,6 +14,13 @@ RGB and Hex values are outputted to the right.
 
 An example of the type of image produced is available on the wiki page.
 
+Running the App:
+I use Aprelium Abyss webserver hosted on my computer to run via localhost. Save in htdocs and navigate via browser.
+- http://aprelium.com/abyssws/
+
+Or use whatever webserver (apache, etc) you'd like, or any webhost you may have.
+
+
 TODO:
 - ~Make text draggable around the canvas.~
 - Prettify CSS code and see what improvements can be made. Fear of redundancy or overused/misused attributes. Flexboxes are new to me.
