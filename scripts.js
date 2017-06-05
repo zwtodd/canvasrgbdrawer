@@ -1,6 +1,6 @@
 // automatically update the canvas every 100ms (1/10th second)
 function init() {
-	return setInterval(changeCanvas, 100);
+	return setInterval(changeCanvas, 33.33);
 }
 
 
