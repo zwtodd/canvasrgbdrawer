@@ -3,6 +3,7 @@ function init() {
 	return setInterval(changeCanvas, 100);
 }
 
+
 function drawCanvas( rgb, rgbgrad ) { //rgb/rgbgrad is optional parameter to be used after intial drawing on page load
 	rgb = rgb || 0;
 	rgbgrad = rgbgrad || 0;
@@ -62,39 +63,10 @@ function drawCanvas( rgb, rgbgrad ) { //rgb/rgbgrad is optional parameter to be 
 	context.fill();
 	context.closePath();
 	
-	if ( document.getElementById( "textCheckBoxID" ).checked ) {
-		var textContext = canvas.getContext('2d');
-		var userText = document.getElementById('addTxtBxID').value;
-		var userFontSelect = document.getElementById('addTxtFontID');
-		var userFontSizeSelect = document.getElementById('addTxtFontSizeID');
-		var userFontColor = document.getElementById('addTxtColorID').value;
-		
-		var userFont = userFontSelect.options[userFontSelect.selectedIndex].value;
-		var userFontSize = userFontSizeSelect.options[userFontSizeSelect.selectedIndex].value;
-		
-		textContext.font = userFontSize + " " + userFont;
-		textContext.fillStyle = userFontColor;
-		textContext.textAlign = "center";
-		
-		//checks if user wants a shadow on the text, if no shadow is selected, sets attributes equal to 0
-		if(document.getElementById('addTxtShadowID').checked) {
-			textContext.save(); // save the context before drawing shadows, and restore it later, otherwise shadows will be drawn on all elements of canvas (circle/rect)
-			textContext.shadowOffsetX = document.getElementById('shadowXOffID').value;
-			textContext.shadowOffsetY = document.getElementById('shadowYOffValID').value;
-			textContext.shadowBlur = document.getElementById('shadowBlurValID').value;
-			textContext.shadowColor = document.getElementById('shadowColorID').value;
-		} else {
-			textContext.shadowOffsetX = 0;
-			textContext.shadowOffsetY = 0;
-			textContext.shadowBlur = 0;
-			textContext.shadowColor = 0;
-		}
-		
-		//Fill text in
-		textContext.fillText(userText, canvas.width/2, canvas.height/2);
-		textContext.restore(); // restore state of context
-		textContext.closePath();
+	if ( document.getElementById( "textCheckBoxID" ).checked ) { 
+		drawText();
 	}
+
 
 
 } // END OF drawCanvas()
@@ -119,7 +91,12 @@ function changeCanvas() {
 	document.getElementById( "colorOneHexValue" ).value = hexUpper;
 	document.getElementById( "colorTwoRGBValue" ).value = rgbGradientLong;
 	document.getElementById( "colorTwoHexValue" ).value = hexGradientUpper;
-	//fills circle with new background color
+
+	if(document.getElementById("textCheckBoxID".checked)) {
+		textDragInit(); // init for text drawing and dragging
+	}	
+	
+	//draw to canvas
 	drawCanvas( rgbLong, rgbGradientLong );
 }
 
