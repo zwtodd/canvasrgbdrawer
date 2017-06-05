@@ -1,3 +1,8 @@
+// automatically update the canvas every 100ms (1/10th second)
+function init() {
+	return setInterval(changeCanvas, 100);
+}
+
 function drawCanvas( rgb, rgbgrad ) { //rgb/rgbgrad is optional parameter to be used after intial drawing on page load
 	rgb = rgb || 0;
 	rgbgrad = rgbgrad || 0;
@@ -14,7 +19,6 @@ function drawCanvas( rgb, rgbgrad ) { //rgb/rgbgrad is optional parameter to be 
 		var innerRadius = document.getElementById( 'radialInnerMaxID' ).value;
 		var outerRadius = document.getElementById( 'radialOuterMaxID' ).value;
 		var type = gradientTypeFunc();
-		console.log(type);
 		// determine linear/radial gradient and create accordingly
 		switch ( type ) {
 			case '1': // 1 (ONE) is linear
@@ -169,12 +173,5 @@ $( document ).ready( function() {
 $( document ).ready( function() {
 		$( '#addTxtShadowID' ).change( function() {
 				$( "#txtShadowOptionsID" ).toggleClass("hide");
-			} );
-	} );
-
-// jquery: most inputs will support this class in order to initiate a redrawing of the canvas when they are altered
-$( document ).ready( function() {
-		$( '.reDrawOnChange' ).change( function() {
-				changeCanvas();
 			} );
 	} );

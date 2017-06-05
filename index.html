@@ -20,251 +20,247 @@
 		<title>testing</title>
 
 	</head>
-	<body onload="drawCanvas()">
+	<body onload="init()">
 		<!-- Main wrapper div for page -->
 		<div id="mainWrprID" class="mainWrprCls">
 		
 			<!-- Left wrapper for content -->
 			<div id="leftWrprID" class="leftWrprCls">
-				<form id="leftFormID" class="reDrawOnChange">
-					<div id="canvasWrprID" class="canvasWrprCls">
+				<div id="canvasWrprID" class="canvasWrprCls">
 				
-						<canvas id="mainCanvas" class="mainCanvasCls" width="500" height="500">
-						</canvas>
-					</div> <!-- END OF CANVAS WRAPPER -->
+					<canvas id="mainCanvas" class="mainCanvasCls" width="500" height="500">
+					</canvas>
+				</div> <!-- END OF CANVAS WRAPPER -->
 				
-					<!-- color One sliders -->
-					<div id="colorOneSlidersID" class="colorSlidersCls smallerFont">
+				<!-- color One sliders -->
+				<div id="colorOneSlidersID" class="colorSlidersCls smallerFont">
 				
-						<div>
-							<label for="colorOneSlideRedID">Red:</label><br />
-							<input type="range" min="0" max="255" step="1" id="colorOneSlideRedID" name="colorOneSlideRed" value="91" oninput="colorOneRedValue.value=colorOneSlideRedID.value"/>
-						</div>
-						<div>
-							<label for="colorOneSlideGreenID">Green:</label><br />
-							<input type="range" min="0" max="255" step="1" id="colorOneSlideGreenID" name="colorOneSlideGreen" value="111" oninput="colorOneGreenValue.value=colorOneSlideGreenID.value"/>
-						</div>
-						<div>
-							<label for="colorOneSlideBlueID">Blue:</label><br />
-							<input type="range" min="0" max="255" step="1" id="colorOneSlideBlueID" name="colorOneSlideBlue" value="192" oninput="colorOneBlueValue.value=colorOneSlideBlueID.value"/>
-						</div>
+					<div>
+						<label for="colorOneSlideRedID">Red:</label><br />
+						<input type="range" min="0" max="255" step="1" id="colorOneSlideRedID" name="colorOneSlideRed" value="91" oninput="colorOneRedValue.value=colorOneSlideRedID.value"/>
+					</div>
+					<div>
+						<label for="colorOneSlideGreenID">Green:</label><br />
+						<input type="range" min="0" max="255" step="1" id="colorOneSlideGreenID" name="colorOneSlideGreen" value="111" oninput="colorOneGreenValue.value=colorOneSlideGreenID.value"/>
+					</div>
+					<div>
+						<label for="colorOneSlideBlueID">Blue:</label><br />
+						<input type="range" min="0" max="255" step="1" id="colorOneSlideBlueID" name="colorOneSlideBlue" value="192" oninput="colorOneBlueValue.value=colorOneSlideBlueID.value"/>
+					</div>
 					
-					</div> <!-- END OF colorOneSliders WRAPPER -->
+				</div> <!-- END OF colorOneSliders WRAPPER -->
 				
-					<!-- color Two sliders for gradient-->
-					<div id="colorTwoSlidersID" class="hide smallerFont">
+				<!-- color Two sliders for gradient-->
+				<div id="colorTwoSlidersID" class="hide smallerFont">
 				
-						<div>
-							<label for="colorTwoSlideRedID">Red:</label><br />
-							<input type="range" min="0" max="255" id="colorTwoSlideRedID" name="colorTwoSlideRed" value="91" oninput="colorTwoRedValue.value=colorTwoSlideRedID.value"/>
-						</div>
-						<div>
-							<label for="colorTwoSlideGreenID">Green:</label><br />
-							<input type="range" min="0" max="255" id="colorTwoSlideGreenID" name="colorTwoSlideGreen" value="111" oninput="colorTwoGreenValue.value=colorTwoSlideGreenID.value"/>
-						</div>
-						<div>
-							<label for="colorTwoSlideBlueID">Blue:</label><br />
-							<input type="range" min="0" max="255" id="colorTwoSlideBlueID" name="colorTwoSlideBlue" value="192" oninput="colorTwoBlueValue.value=colorTwoSlideBlueID.value"/>
-						</div>
-					</div> <!-- END OF colorOneSliders WRAPPER -->
+					<div>
+						<label for="colorTwoSlideRedID">Red:</label><br />
+						<input type="range" min="0" max="255" id="colorTwoSlideRedID" name="colorTwoSlideRed" value="91" oninput="colorTwoRedValue.value=colorTwoSlideRedID.value"/>
+					</div>
+					<div>
+						<label for="colorTwoSlideGreenID">Green:</label><br />
+						<input type="range" min="0" max="255" id="colorTwoSlideGreenID" name="colorTwoSlideGreen" value="111" oninput="colorTwoGreenValue.value=colorTwoSlideGreenID.value"/>
+					</div>
+					<div>
+						<label for="colorTwoSlideBlueID">Blue:</label><br />
+						<input type="range" min="0" max="255" id="colorTwoSlideBlueID" name="colorTwoSlideBlue" value="192" oninput="colorTwoBlueValue.value=colorTwoSlideBlueID.value"/>
+					</div>
+				</div> <!-- END OF colorOneSliders WRAPPER -->
 
-					<!--start gradient options div when second color is selected -->
-					<div id="gradientOptionsID"  class="hide smallerFont">
-						<div style="padding-right: 10px">
-							<label for="linearRadioID">Linear:</label>
-							<input type="radio" class="linearOrRadialCls" id="linearRadioID" name="linearOrRadial" value="1" checked><br />
-							<label for="radialRadioID">Radial:</label>
-							<input type="radio" class="linearOrRadialCls" id="radialRadioID" name="linearOrRadial" value="2">
+				<!--start gradient options div when second color is selected -->
+				<div id="gradientOptionsID"  class="hide smallerFont">
+					<div style="padding-right: 10px">
+						<label for="linearRadioID">Linear:</label>
+						<input type="radio" class="linearOrRadialCls" id="linearRadioID" name="linearOrRadial" value="1" checked><br />
+						<label for="radialRadioID">Radial:</label>
+						<input type="radio" class="linearOrRadialCls" id="radialRadioID" name="linearOrRadial" value="2">
+					</div>
+					<div id="gradient-1" class="gradientOptionsCls valuesCls hideClassJQ">	<!-- hideClassJQ is checked in Jquery to hide the div not being used via radio button -->
+						<div>
+							<label for="linearColorStopID">Linear Stop:</label>
+							<input type="range" id="linearColorStopID" class="smallerRangeWidth" min="1" max="1000" step="1" oninput="linearStopValueID.value=linearColorStopID.value"/>
+							<input style="text-align: center;" type="text" size="4" id="linearStopValueID"  value="1000" readonly/>
 						</div>
-						<div id="gradient-1" class="gradientOptionsCls valuesCls hideClassJQ">	<!-- hideClassJQ is checked in Jquery to hide the div not being used via radio button -->
-							<div>
-								<label for="linearColorStopID">Linear Stop:</label>
-								<input type="range" id="linearColorStopID" class="smallerRangeWidth" min="1" max="1000" step="1" oninput="linearStopValueID.value=linearColorStopID.value"/>
-								<input style="text-align: center;" type="text" size="4" id="linearStopValueID"  value="1000" readonly/>
-							</div>
-						</div>
-						<div id="gradient-2" class="gradientOptionsCls valuesCls hide hideClassJQ">
-							<div>
-								<label for="radialInnerMaxID">Radial Inner Max:</label>
-								<input type="range" id="radialInnerMaxID" class="smallerRangeWidth" min="1" max="200" step="1" value="50" oninput="radialInnerMaxVal.value=radialInnerMaxID.value"/>
-								<input style="text-align: center;" type="text" size="4" id="radialInnerMaxVal"  value="50" readonly/>
-							</div>
-							<div>
-								<label for="radialOuterMaxID">Radial Outer Max:</label>
-								<input type="range" id="radialOuterMaxID" class="smallerRangeWidth" min="1" max="600" step="1" value="100" oninput="radialOuterMaxVal.value=radialOuterMaxID.value"/>
-								<input style="text-align: center;" type="text" size="4" id="radialOuterMaxVal"  value="100" readonly/>
-							</div>
-						</div>
-					</div> <!-- END gradient options div -->
-				
-					<!--Start add text options div -->
-					<div id="textOptionsID" class="hide">
-						<div class="smallerFont">
-							<label>Text Options</label>
+					</div>
+					<div id="gradient-2" class="gradientOptionsCls valuesCls hide hideClassJQ">
+						<div>
+							<label for="radialInnerMaxID">Radial Inner Max:</label>
+							<input type="range" id="radialInnerMaxID" class="smallerRangeWidth" min="1" max="200" step="1" value="50" oninput="radialInnerMaxVal.value=radialInnerMaxID.value"/>
+							<input style="text-align: center;" type="text" size="4" id="radialInnerMaxVal"  value="50" readonly/>
 						</div>
 						<div>
-							<div>
-								<input type="text" id="addTxtBxID" placeholder="Enter text..."/>
-								<select id="addTxtFontID" size="1">
-									<option value="arial">Arial</option>
-									<option value="times new roman">Times New Roman</option>
-									<option value="courier new" selected>Courier New</option>
-									<option value="Roboto">Roboto</option>
-									<option value="Open Sans">Open Sans</option>
-									<option value="Source Sans Pro">Source Sans Pro</option>
-									<option value="Montserrat">Montserrat</option>
-									<option value="Bitter">Bitter</option>
-									<option value="Indie Flower">Indie Flower</option>
-									<option value="Pacifico">Pacifico</option>
-									<option value="Abril Fatface">Abril Fatface</option>
-									<option value="Shadows Into Light">Shadows Into Light</option>
-									<option value="Dancing Script">Dancing Script</option>
-									<option value="Archivo Black">Archivo Black</option>
-									<option value="Acme">Acme</option>
-								</select>
-							</div>
-							<div class="smallerFont">
-								<select id="addTxtFontSizeID" size="1">
-									<option value="8px">8</option>
-									<option value="10px">10</option>
-									<option value="12px">12</option>
-									<option value="14px">14</option>
-									<option value="16px">16</option>
-									<option value="18px">18</option>
-									<option value="20px">20</option>
-									<option value="22px">22</option>
-									<option value="24px">24</option>
-									<option value="26px">26</option>
-									<option value="28px">28</option>
-									<option value="30px">30</option>
-									<option value="32px" selected>32</option>
-									<option value="34px">34</option>
-									<option value="36px">36</option>
-									<option value="38px">38</option>
-									<option value="40px">40</option>
-									<option value="42px">42</option>
-									<option value="44px">44</option>
-									<option value="46px">46</option>
-									<option value="48px">48</option>
-									<option value="50px">50</option>
-									<option value="52px">52</option>
-									<option value="54px">54</option>
-									<option value="56px">56</option>
-									<option value="58px">58</option>
-									<option value="60px">60</option>
-									<option value="62px">62</option>
-									<option value="64px">64</option>
-									<option value="66px">66</option>
-									<option value="68px">68</option>
-									<option value="70px">70</option>
-									<option value="72px">72</option>
-								</select>
-								<input type="color" id="addTxtColorID"/>
-								<label for="addTxtShadowID">Add Shadows</label>
-								<input type="checkbox" id="addTxtShadowID"/>
-							</div>
+							<label for="radialOuterMaxID">Radial Outer Max:</label>
+							<input type="range" id="radialOuterMaxID" class="smallerRangeWidth" min="1" max="600" step="1" value="100" oninput="radialOuterMaxVal.value=radialOuterMaxID.value"/>
+							<input style="text-align: center;" type="text" size="4" id="radialOuterMaxVal"  value="100" readonly/>
 						</div>
-					</div> <!-- END TEXT OPTIONS DIV -->
-					
-					<!-- Add shadows div start -->
-					<div id="txtShadowOptionsID" class="hide">
-						<div class="smallerFont shadowOptionsCls">
-							<div class="labelpadding">
-								<div><label for="shadowXOffID">x offset:</label></div>
-								<div><label for="shadowYOffID">y offset:</label></div>
-								<div><label for="shadowBlurID">blur:</label></div>
-								<div><label for="shadowColorID">color:</label></div>
-							</div>
-							<div>
-								<div><input type="range" id="shadowXOffID" min="0" max="20" step="0.1" oninput="shadowXOffValID.value=shadowXOffID.value"/></div>
-								<div><input type="range" id="shadowYOffID" min="0" max="20" step="0.1" oninput="shadowYOffValID.value=shadowYOffID.value"/></div>
-								<div><input type="range" id="shadowBlurID" min="0" max="20" step="0.1" oninput="shadowBlurValID.value=shadowBlurID.value"/></div>
-								<div><input type="color" id="shadowColorID" oninput="shadowColorValID.value =shadowColorID.value.toUpperCase()"/></div>
-							</div>
-							<div>
-								<div class="valuesCls textBoxSmallerSize"><input type="text" id="shadowXOffValID" value="5" /></div>
-								<div class="valuesCls textBoxSmallerSize"><input type="text" id="shadowYOffValID" value="5" readonly/></div>
-								<div class="valuesCls textBoxSmallerSize"><input type="text" id="shadowBlurValID" value="5" readonly/></div>
-								<div class="valuesCls textBoxSmallerSize"><input type="text" id="shadowColorValID" value="#FFFFFF" readonly/></div>
-							</div>
+					</div>
+				</div> <!-- END gradient options div -->
+				
+				<!--Start add text options div -->
+				<div id="textOptionsID" class="hide">
+					<div class="smallerFont">
+						<label>Text Options</label>
+					</div>
+					<div>
+						<div>
+							<input type="text" id="addTxtBxID" placeholder="Enter text..."/>
+							<select id="addTxtFontID" size="1">
+								<option value="arial">Arial</option>
+								<option value="times new roman">Times New Roman</option>
+								<option value="courier new" selected>Courier New</option>
+								<option value="Roboto">Roboto</option>
+								<option value="Open Sans">Open Sans</option>
+								<option value="Source Sans Pro">Source Sans Pro</option>
+								<option value="Montserrat">Montserrat</option>
+								<option value="Bitter">Bitter</option>
+								<option value="Indie Flower">Indie Flower</option>
+								<option value="Pacifico">Pacifico</option>
+								<option value="Abril Fatface">Abril Fatface</option>
+								<option value="Shadows Into Light">Shadows Into Light</option>
+								<option value="Dancing Script">Dancing Script</option>
+								<option value="Archivo Black">Archivo Black</option>
+								<option value="Acme">Acme</option>
+							</select>
 						</div>
-					</div> <!-- ADD SHADOWS DIV END -->
+						<div class="smallerFont">
+							<select id="addTxtFontSizeID" size="1">
+								<option value="8px">8</option>
+								<option value="10px">10</option>
+								<option value="12px">12</option>
+								<option value="14px">14</option>
+								<option value="16px">16</option>
+								<option value="18px">18</option>
+								<option value="20px">20</option>
+								<option value="22px">22</option>
+								<option value="24px">24</option>
+								<option value="26px">26</option>
+								<option value="28px">28</option>
+								<option value="30px">30</option>
+								<option value="32px" selected>32</option>
+								<option value="34px">34</option>
+								<option value="36px">36</option>
+								<option value="38px">38</option>
+								<option value="40px">40</option>
+								<option value="42px">42</option>
+								<option value="44px">44</option>
+								<option value="46px">46</option>
+								<option value="48px">48</option>
+								<option value="50px">50</option>
+								<option value="52px">52</option>
+								<option value="54px">54</option>
+								<option value="56px">56</option>
+								<option value="58px">58</option>
+								<option value="60px">60</option>
+								<option value="62px">62</option>
+								<option value="64px">64</option>
+								<option value="66px">66</option>
+								<option value="68px">68</option>
+								<option value="70px">70</option>
+								<option value="72px">72</option>
+							</select>
+							<input type="color" id="addTxtColorID"/>
+							<label for="addTxtShadowID">Add Shadows</label>
+							<input type="checkbox" id="addTxtShadowID"/>
+						</div>
+					</div>
+				</div> <!-- END TEXT OPTIONS DIV -->
 					
-				</form>
+				<!-- Add shadows div start -->
+				<div id="txtShadowOptionsID" class="hide">
+					<div class="smallerFont shadowOptionsCls">
+						<div class="labelpadding">
+							<div><label for="shadowXOffID">x offset:</label></div>
+							<div><label for="shadowYOffID">y offset:</label></div>
+							<div><label for="shadowBlurID">blur:</label></div>
+							<div><label for="shadowColorID">color:</label></div>
+						</div>
+						<div>
+							<div><input type="range" id="shadowXOffID" min="0" max="20" step="0.1" oninput="shadowXOffValID.value=shadowXOffID.value"/></div>
+							<div><input type="range" id="shadowYOffID" min="0" max="20" step="0.1" oninput="shadowYOffValID.value=shadowYOffID.value"/></div>
+							<div><input type="range" id="shadowBlurID" min="0" max="20" step="0.1" oninput="shadowBlurValID.value=shadowBlurID.value"/></div>
+							<div><input type="color" id="shadowColorID" oninput="shadowColorValID.value =shadowColorID.value.toUpperCase()"/></div>
+						</div>
+						<div>
+							<div class="valuesCls textBoxSmallerSize"><input type="text" id="shadowXOffValID" value="5" /></div>
+							<div class="valuesCls textBoxSmallerSize"><input type="text" id="shadowYOffValID" value="5" readonly/></div>
+							<div class="valuesCls textBoxSmallerSize"><input type="text" id="shadowBlurValID" value="5" readonly/></div>
+							<div class="valuesCls textBoxSmallerSize"><input type="text" id="shadowColorValID" value="#FFFFFF" readonly/></div>
+						</div>
+					</div>
+				</div> <!-- ADD SHADOWS DIV END -->
+					
 			</div> <!-- END LEFT WRAPPER -->
 			
 			<!-- Right wrapper for content -->
 			<div id="rightWrprID" class="rightWrprCls">
-				<form id="rightFormID" class="reDrawOnChange">
-					<div id="canvasOptionsID" class="valuesCls">
-						<div><p class="p_nospace">Canvas Options:</p></div>
+				<div id="canvasOptionsID" class="valuesCls">
+					<div><p class="p_nospace">Canvas Options:</p></div>
+					<div>
+						<label for="drawCircleCheckBoxID">Draw Circle:</label>
+						<input type="checkbox" id="drawCircleCheckBoxID" class="drawCircleCheckBoxCls"/>
+					</div>
+					<div>
+						<label for="gradientCheckBoxID">Gradient:</label>
+						<input type="checkbox" id="gradientCheckBoxID" class="gradientCheckBoxCls"/>
+					</div>
+					<div>
+						<label for="textCheckBoxID">Add Text:</label>
+						<input type="checkbox" id="textCheckBoxID" class="textCheckBoxCls"/>
+					</div>
+				</div>
+				<!-- color values from slider values inputted into text box on right wrapper -->
+				<div id="colorOneValues" class="valuesCls">
+					<div><p class="p_nospace">Color One:</p></div>
+					<div>
+						<label for="colorOneRedValue">R:</label>
+						<input id="colorOneRedValue" type="text" value="91" readonly/>
+					</div><br />
+					<div>
+						<label for="colorOneGreenValue">G:</label>
+						<input id="colorOneGreenValue" type="text" value="111" readonly/>
+					</div>
+					<div>
+						<label for="colorOneBlueValue">B:</label>
+						<input id="colorOneBlueValue" type="text" value="192" readonly/>
+					</div>
+					<div class="textBoxSmallerSizeValues">
 						<div>
-							<label for="drawCircleCheckBoxID">Draw Circle:</label>
-							<input type="checkbox" id="drawCircleCheckBoxID" class="drawCircleCheckBoxCls"/>
+							<label for="colorOneRGBValue">rgb:</label>
+							<input id="colorOneRGBValue" class="textBoxSmallerSize" type="text" value="rgb(91,111,192)" readonly/>
 						</div>
 						<div>
-							<label for="gradientCheckBoxID">Gradient:</label>
-							<input type="checkbox" id="gradientCheckBoxID" class="gradientCheckBoxCls"/>
-						</div>
-						<div>
-							<label for="textCheckBoxID">Add Text:</label>
-							<input type="checkbox" id="textCheckBoxID" class="textCheckBoxCls"/>
+							<label for="colorOneHexValue">hex:</label>
+							<input id="colorOneHexValue" class="textBoxSmallerSize" type="text" value="#8080C0" readonly/>
 						</div>
 					</div>
-					<!-- color values from slider values inputted into text box on right wrapper -->
-					<div id="colorOneValues" class="valuesCls">
-						<div><p class="p_nospace">Color One:</p></div>
-						<div>
-							<label for="colorOneRedValue">R:</label>
-							<input id="colorOneRedValue" type="text" value="91" readonly/>
-						</div><br />
-						<div>
-							<label for="colorOneGreenValue">G:</label>
-							<input id="colorOneGreenValue" type="text" value="111" readonly/>
-						</div>
-						<div>
-							<label for="colorOneBlueValue">B:</label>
-							<input id="colorOneBlueValue" type="text" value="192" readonly/>
-						</div>
-						<div class="textBoxSmallerSizeValues">
-							<div>
-								<label for="colorOneRGBValue">rgb:</label>
-								<input id="colorOneRGBValue" class="textBoxSmallerSize" type="text" value="rgb(91,111,192)" readonly/>
-							</div>
-							<div>
-								<label for="colorOneHexValue">hex:</label>
-								<input id="colorOneHexValue" class="textBoxSmallerSize" type="text" value="#8080C0" readonly/>
-							</div>
-						</div>
-					</div>
+				</div>
 						
-					<div id="colorTwoValues" class="valuesCls hide">
-						<div><p class="p_nospace">Color Two:</p></div>
+				<div id="colorTwoValues" class="valuesCls hide">
+					<div><p class="p_nospace">Color Two:</p></div>
+					<div>
+						<label for="colorTwoRedValue">R:</label>
+						<input id="colorTwoRedValue" type="text" value="91" readonly/>
+					</div><br />
+					<div>
+						<label for="colorTwoGreenValue">G:</label>
+						<input id="colorTwoGreenValue" type="text" value="111" readonly/>
+					</div>
+					<div>
+						<label for="colorTwoBlueValue">B:</label>
+						<input id="colorTwoBlueValue" type="text" value="192" readonly/>
+					</div>
+					<div class="textBoxSmallerSizeValues">
 						<div>
-							<label for="colorTwoRedValue">R:</label>
-							<input id="colorTwoRedValue" type="text" value="91" readonly/>
-						</div><br />
-						<div>
-							<label for="colorTwoGreenValue">G:</label>
-							<input id="colorTwoGreenValue" type="text" value="111" readonly/>
+							<label for="colorTwoRGBValue">rgb:</label>
+							<input id="colorTwoRGBValue" class="textBoxSmallerSize" type="text" value="rgb(91,111,192)" readonly/>
 						</div>
 						<div>
-							<label for="colorTwoBlueValue">B:</label>
-							<input id="colorTwoBlueValue" type="text" value="192" readonly/>
+							<label for="colorTwoHexValue">hex:</label>
+							<input id="colorTwoHexValue" class="textBoxSmallerSize" type="text" value="#8080C0" readonly/>
 						</div>
-						<div class="textBoxSmallerSizeValues">
-							<div>
-								<label for="colorTwoRGBValue">rgb:</label>
-								<input id="colorTwoRGBValue" class="textBoxSmallerSize" type="text" value="rgb(91,111,192)" readonly/>
-							</div>
-							<div>
-								<label for="colorTwoHexValue">hex:</label>
-								<input id="colorTwoHexValue" class="textBoxSmallerSize" type="text" value="#8080C0" readonly/>
-							</div>
-						</div>
+					</div>
 
-					</div> <!-- END COLOR SLIDERS VALUES DIVS -->
-				</form>
+				</div> <!-- END COLOR SLIDERS VALUES DIVS -->
 			</div> <!-- END RIGHT WRAPPER -->
 
 		</div> <!-- END OF MAIN WRAPPER DIV -->
