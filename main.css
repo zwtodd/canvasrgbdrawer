@@ -1,0 +1,102 @@
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+label {
+	font-family: monospace;
+	font-size: large;
+}
+
+#mainWrprID {
+	width: 1000px;
+	height: 800px;
+}
+
+#leftWrprID {
+	width: 800px;
+	height: 800px;
+}
+
+#rightWrprID {
+	width: 200px;
+	height: 800px;
+}
+
+#mainCanvas {
+	background: #FFFFFF;
+}
+
+.colorSlidersCls, .canvasWrprCls, .mainWrprCls{
+	display: flex;
+	justify-content: center;
+	align-content: flex-start;
+	padding: 5px 0 5px 0;
+	text-align: center;
+}
+
+.leftWrprCls, .rightWrprCls {
+	align-content: space-between;
+}
+.valuesCls {
+	display: flex;
+	align-content: space-between;
+	padding: 5px 0 5px 0;
+	text-align: center;
+	flex-wrap: wrap;
+}
+
+.valuesCls input{
+	border: none;
+}
+
+.p_nospace {
+	margin: 0;
+	padding: 0;
+}
+
+.gradientOptionsCls {
+	display: flex;
+	justify-content: center;
+	align-content: space-between;
+	align-items: center;
+	padding: 0 25px 0 0;
+	text-align: center;
+}
+
+.smallerRangeWidth {
+	width: 75px;
+}
+
+.smallerFont label {
+	font-size: small;
+}
+
+.shadowOptionsCls {
+	display: flex;
+	justify-content: center;
+	align-content: space-between;
+	align-items: flex-start;
+	padding: 0 0px 0 0;
+	text-align: center;
+}
+
+.labelpadding div{
+	padding: 0.5px 10px 8px 0;
+	text-align: right;
+}
+
+.textBoxSmallerSize input {
+	width: 70px;
+	padding: 1px;
+	text-align: center;
+}
+
+.textBoxSmallerSizeValues input {
+	width: 100px;
+	padding: 1px;
+}
+
+.hide{
+	display: none;
+}
