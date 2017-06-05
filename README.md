@@ -20,5 +20,5 @@ TODO:
 - See about having the app output the CSS code for use in other projects. 
 - Custom image overlays.
 - Improve comments within code.
-- Possibly add more color/gradient abilities. See if adding a color can be modular and ~infinite~.
+- Possibly add more color/gradient abilities. See if adding a color can be modular and "infinite".
 - Download image that is produced.
