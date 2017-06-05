@@ -15,6 +15,7 @@ RGB and Hex values are outputted to the right.
 An example of the type of image produced is available on the wiki page.
 
 Running the App:
+
 I use Aprelium Abyss webserver hosted on my computer to run via localhost. Save in htdocs and navigate via browser.
 - http://aprelium.com/abyssws/
 
