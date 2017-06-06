@@ -118,6 +118,16 @@ function rgb2hex( rgbX ) {
 	return ( rgbX && rgbX.length === 4 ) ? "#" + ( "0" + parseInt( rgbX[ 1 ], 10 ).toString( 16 ) ).slice( -2 ) + ( "0" + parseInt( rgbX[ 2 ], 10 ).toString( 16 ) ).slice( -2 ) + ( "0" + parseInt( rgbX[ 3 ], 10 ).toString( 16 ) ).slice( -2 ) : '';
 }
 
+// Simple function to set variables to be used in download(), proved by download.js 
+// download.js : https://github.com/rndme/download
+function downloadCanvas() {
+	var canvasDL = document.getElementById('mainCanvas');
+	var data = canvasDL.toDataURL();
+	var strFileName = 'myImage.png';
+	var strMimeType = 'image/png';
+	download(data, strFileName, strMimeType);
+}
+
 
 //jquery: toggle second color div and gradient options when gradient checkbox is checked
 $( document ).ready( function() {
@@ -130,28 +140,6 @@ $( document ).ready( function() {
 
 			} );
 	} );
-	
-
-/* 
-*  The following function to download the canvas as a png file was stolen from this jsfiddle: http://jsfiddle.net/wboykinm/fL0q2uce/
-*  Author notes are below. Code was modified a bit to fit into this app. Pressing link on right side of screen will initiate download.
-*
-*    Ken Fyrstenberg Nilsen
-*    Abidas Software
-*/
-
-/**
-* This is the function that will take care of image extracting and
-* setting proper filename for the download.
-* IMPORTANT: Call it from within a onclick event.
-*/
-function downloadCanvas() {
-	var link = document.getElementById("downloadLinkID");
-	var canvasId = 'mainCanvas';
-	var filename = 'myImage.png';
-	link.href = document.getElementById(canvasId).toDataURL();
-	link.download = filename;
-}
 
 // jquery: toggles visibility of gradient options divs when selecting between linear/radial div (linear or radialradio buttons)	
 $(document).ready(function() {
