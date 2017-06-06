@@ -25,6 +25,7 @@ I use Aprelium Abyss webserver hosted on my computer to run via localhost. Save 
 Or use whatever webserver (apache, etc) you'd like, or any webhost you may have.
 
 # Demo
+[This appears to be broken for some reason. Please download and run code if you wish to see it.]
 You can see a demo of canvasrgbdrawer here: https://zwtodd.github.io/canvasrgbdrawer/
 
 
