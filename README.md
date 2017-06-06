@@ -45,5 +45,5 @@ You can see a demo of canvasrgbdrawer here: https://zwtodd.github.io/canvasrgbdr
 - Possibly changed layout to where the canvas is above on its one section, and the options/values are displayed beneath. Maybe.
 
 # "Borrowed Code"
-This project is a learning expierence for me all around. Each item on the todo list is getting checked off and that is an awesome feeling. However, learning stuff for the sake of learning can almost be like reiventing the wheel. There are snippets of code that I have taken off sites like jsfiddle. Each snippet is commented with a link back to where I found it. As of right now, the only file I haven't composed myself is download.js, used to easily download the png form the canvas, which can be found on github:
+This project is a learning expierence for me all around. Each item on the todo list is getting checked off and that is an awesome feeling. However, learning stuff for the sake of learning can almost be like reiventing the wheel. There are snippets of code that I have taken off sites like jsfiddle. Each snippet is commented with a link back to where I found it. As of right now, the only file I haven't composed myself is download.js (used to easily download the canvas as a .png), which can be found on github:
 - https://github.com/rndme/download
