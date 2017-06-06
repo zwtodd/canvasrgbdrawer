@@ -31,7 +31,9 @@
 				<div id="canvasWrprID" class="canvasWrprCls">
 				
 					<canvas id="mainCanvas" class="mainCanvasCls" width="500" height="500">
-					[Canvas is unavailable in your browser. Consider updating...]
+						[Canvas is unavailable in your browser. Consider updating...]
+					</canvas>
+					<canvas id="textCanvas" class="textCanvasCls" width="500" height="500">
 					</canvas>
 				</div> <!-- END OF CANVAS WRAPPER -->
 				
@@ -164,7 +166,9 @@
 							<input type="color" id="addTxtColorID"/>
 							<label for="addTxtShadowID">Add Shadows</label>
 							<input type="checkbox" id="addTxtShadowID"/>
+							<span class="saveTxtBtnCls" onclick="saveText()">Commit Text</span>
 						</div>
+						
 					</div>
 				</div> <!-- END TEXT OPTIONS DIV -->
 					
@@ -264,9 +268,13 @@
 					</div>
 
 				</div> <!-- END COLOR SLIDERS VALUES DIVS -->
-				<div id="downloadLinkDivID">
-					<a id="downloadLinkID" onclick="downloadCanvas()">Download Image (.png)</a>
+				<div id="downloadLinkDivID" class="downloadStyle">
+					<div class="downloadStyle"><span class="saveTxtBtnCls" onclick="downloadCanvas()">Download PNG</span></div>
 				</div>
+				
+				
+				
+				
 			</div> <!-- END RIGHT WRAPPER -->
 
 		</div> <!-- END OF MAIN WRAPPER DIV -->

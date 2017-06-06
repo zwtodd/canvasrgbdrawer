@@ -1,10 +1,13 @@
-// automatically update the canvas every 100ms (1/10th second)
+// GLOBALS
+var savedTexts = [];
+
+// automatically update the canvas every 33.33ms (approx 30fps)
 function init() {
 	return setInterval(changeCanvas, 33.33);
 }
 
 
-function drawCanvas( rgb, rgbgrad ) { //rgb/rgbgrad is optional parameter to be used after intial drawing on page load
+function drawCanvas( rgb, rgbgrad ) { // rgb/rgbgrad is optional parameter to be used after intial drawing on page load
 	rgb = rgb || 0;
 	rgbgrad = rgbgrad || 0;
 	var canvas = document.getElementById( 'mainCanvas' );
@@ -33,7 +36,7 @@ function drawCanvas( rgb, rgbgrad ) { //rgb/rgbgrad is optional parameter to be 
 		grd.addColorStop( 1, rgbgrad );
 	}
 	context.beginPath();
-	if ( rgbgrad == 0 ) {
+	if ( rgbgrad === 0 ) {
 		if ( rgb !== 0 ) {
 			context.fillStyle = rgb;
 		} else {
@@ -50,24 +53,24 @@ function drawCanvas( rgb, rgbgrad ) { //rgb/rgbgrad is optional parameter to be 
 		context.clearRect( 0, 0, canvas.width, canvas.height );
 		context.fillRect( 0, 0, canvas.width, canvas.height );
 	}
-	if ( rgbgrad == 0 ) {
-		if ( rgb !== 0 ) {
-			context.fillStyle = rgb;
-		} else {
-			context.fillStyle = "rgb(91,111,192)"; // default color on page load
-		}
-	} else {
-		context.fillStyle = grd; // fill gradient
-	}
 	
 	context.fill();
-	context.closePath();
+	
 	
 	if ( document.getElementById( "textCheckBoxID" ).checked ) { 
 		drawText();
 	}
+	
+	
+	if(savedTexts.length > 0) {
+		let len = 0;
+		while(len < savedTexts.length) {
+			context.drawImage(savedTexts[len], 0, 0); //the true context of the canvas
+			len++;
+		}
+	}
 
-
+	context.closePath();
 
 } // END OF drawCanvas()
 
@@ -92,10 +95,6 @@ function changeCanvas() {
 	document.getElementById( "colorTwoRGBValue" ).value = rgbGradientLong;
 	document.getElementById( "colorTwoHexValue" ).value = hexGradientUpper;
 
-	if(document.getElementById("textCheckBoxID".checked)) {
-		textDragInit(); // init for text drawing and dragging
-	}	
-	
 	//draw to canvas
 	drawCanvas( rgbLong, rgbGradientLong );
 }
@@ -128,6 +127,15 @@ function downloadCanvas() {
 	download(data, strFileName, strMimeType);
 }
 
+function saveText() {
+	var tcanvas = document.getElementById( 'textCanvas' );
+	var img = new Image();
+	img.src = tcanvas.toDataURL("image/png");
+	savedTexts.push(img);
+	document.getElementById('addTxtBxID').value = "";  // remove text from input field
+	reInitTextVars(); // from dragtext.js, resets the x and y of text coords back to original spots
+	
+}
 
 //jquery: toggle second color div and gradient options when gradient checkbox is checked
 $( document ).ready( function() {
