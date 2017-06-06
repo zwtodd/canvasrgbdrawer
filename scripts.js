@@ -137,6 +137,20 @@ function saveText() {
 	
 }
 
+$(function () {
+		$(":file").change(function () {
+				if (this.files && this.files[0]) {
+					var reader = new FileReader();
+					reader.onload = imageIsLoaded;
+					reader.readAsDataURL(this.files[0]);
+				}
+			});
+	});
+
+function imageIsLoaded(e) {
+	$('#imgThumb').attr('src', e.target.result);
+};
+
 //jquery: toggle second color div and gradient options when gradient checkbox is checked
 $( document ).ready( function() {
 		$( '#gradientCheckBoxID' ).change( function() {
@@ -160,11 +174,25 @@ $(document).ready(function() {
 $( document ).ready( function() {
 		$( '#textCheckBoxID' ).change( function() {
 				$( "#textOptionsID" ).toggleClass("hide");
+				if(document.getElementById('imgCheckBoxID').checked) {
+					$('#imgCheckBoxID').prop('checked', false);
+					$( "#imgDivID" ).toggleClass("hide");
+				}
 			} );
 	} );
  
 $( document ).ready( function() {
 		$( '#addTxtShadowID' ).change( function() {
 				$( "#txtShadowOptionsID" ).toggleClass("hide");
+			} );
+	} );
+	
+$( document ).ready( function() {
+		$( '#imgCheckBoxID' ).change( function() {
+				$( "#imgDivID" ).toggleClass("hide");
+				if(document.getElementById('textCheckBoxID').checked) {
+					$('#textCheckBoxID').prop('checked', false);
+					$( "#textOptionsID" ).toggleClass("hide");
+				}
 			} );
 	} );

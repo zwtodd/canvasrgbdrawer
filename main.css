@@ -1,3 +1,5 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css);
+
 html, body {
 	margin: 0;
 	padding: 0;
@@ -53,6 +55,10 @@ label {
 
 .valuesCls input{
 	border: none;
+}
+
+.valuesCls input[type='checkbox']{
+	padding-left: 20px;
 }
 
 .p_nospace {
@@ -117,48 +123,86 @@ label {
 	color: #444;
 }
 
-.saveTxtBtnCls {
-	-moz-box-shadow: inset 0px 0px 0px 0px #ffffff;
-	-webkit-box-shadow: inset 0px 0px 0px 0px #ffffff;
-	box-shadow: inset 0px 0px 0px 0px #ffffff;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
-	background: -moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-	background: -webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-	background: -o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-	background: -ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-	background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9',GradientType=0);
-	background-color: #f9f9f9;
-	-moz-border-radius: 42px;
-	-webkit-border-radius: 42px;
-	border-radius: 42px;
-	border: 1px solid #dcdcdc;
-	display: inline-block;
-	cursor: pointer;
-	color: #666666;
-	font-family: Courier New;
-	font-size: 15px;
-	font-weight: bold;
-	padding: 5px 8px;
-	text-decoration: none;
-}
-.saveTxtBtnCls:hover {
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
-	background: -moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-	background: -webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-	background: -o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-	background: -ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-	background: linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
-	background-color: #e9e9e9;
-}
-.saveTxtBtnCls:active {
-	position: relative;
-	top: 1px;
-}
-
 .downloadStyle {
 	text-align: left;
 	float: left;
 	padding: 5px 0 5px 0;
+	cursor: pointer; 
 }
+
+.imgClass img {
+	border: 1px solid #ddd;
+	border-radius: 2px;
+	padding: 1px;
+	width: 75px;
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-label {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+
+.hiddenButton {
+	display: none;
+}
+
+.padOptions {
+	padding: 5px;
+}
+
+.imgDivVAlign {
+	vertical-align: middle;
+}
+
+/*** custom checkboxes ***/
+input[type=radio],
+input[type=checkbox] {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+    
+input[type=radio] ~ label:before,
+input[type=checkbox] ~ label:before {
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f1db";
+    letter-spacing: 10px;
+    font-size: 0.8em;
+    color: #535353;
+    width: 1.4em;
+}
+
+input[type=radio]:checked ~ label:before,
+input[type=checkbox]:checked ~ label:before  {
+    content: "\f00c";
+    font-size: 0.8em;
+    color: black;
+    letter-spacing: 5px;
+}
+input[type=checkbox] ~ label:before {        
+    content: "\f096";
+}
+input[type=checkbox]:checked ~ label:before {
+    content: "\f046";        
+    color: black;
+}
+input[type=radio]:focus ~ label:before,
+input[type=checkbox]:focus ~ label:before,
+input[type=radio]:focus ~ label,
+input[type=checkbox]:focus ~ label
+{                
+    color: black;
+}
+

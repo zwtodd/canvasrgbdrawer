@@ -19,6 +19,7 @@
 		<script src="dragtext.js"></script>
 		<script src="scripts.js"></script>
 		<link href="main.css" rel="stylesheet" type="text/css"/>
+		<script src="https://use.fontawesome.com/a04ff08cf6.js"></script>
 		<title>testing</title>
 
 	</head>
@@ -56,7 +57,7 @@
 				</div> <!-- END OF colorOneSliders WRAPPER -->
 				
 				<!-- color Two sliders for gradient-->
-				<div id="colorTwoSlidersID" class="hide smallerFont">
+				<div id="colorTwoSlidersID" class="hide smallerFont padOptions">
 				
 					<div>
 						<label for="colorTwoSlideRedID">Red:</label><br />
@@ -73,12 +74,16 @@
 				</div> <!-- END OF colorOneSliders WRAPPER -->
 
 				<!--start gradient options div when second color is selected -->
-				<div id="gradientOptionsID"  class="hide smallerFont">
+				<div id="gradientOptionsID"  class="hide smallerFont padOptions">
 					<div style="padding-right: 10px">
-						<label for="linearRadioID">Linear:</label>
-						<input type="radio" class="linearOrRadialCls" id="linearRadioID" name="linearOrRadial" value="1" checked><br />
-						<label for="radialRadioID">Radial:</label>
-						<input type="radio" class="linearOrRadialCls" id="radialRadioID" name="linearOrRadial" value="2">
+						<div>
+							<input type="radio" class="linearOrRadialCls" id="linearRadioID" name="linearOrRadial" value="1" checked/>
+							<label for="linearRadioID">Linear:</label>
+						</div>
+						<div>
+							<input type="radio" class="linearOrRadialCls" id="radialRadioID" name="linearOrRadial" value="2" />
+							<label for="radialRadioID">Radial:</label>
+						</div>
 					</div>
 					<div id="gradient-1" class="gradientOptionsCls valuesCls hideClassJQ">	<!-- hideClassJQ is checked in Jquery to hide the div not being used via radio button -->
 						<div>
@@ -102,7 +107,7 @@
 				</div> <!-- END gradient options div -->
 				
 				<!--Start add text options div -->
-				<div id="textOptionsID" class="hide">
+				<div id="textOptionsID" class="hide padOptions">
 					<div class="smallerFont">
 						<label>Text Options</label>
 					</div>
@@ -166,7 +171,7 @@
 							<input type="color" id="addTxtColorID"/>
 							<label for="addTxtShadowID">Add Shadows</label>
 							<input type="checkbox" id="addTxtShadowID"/>
-							<span class="saveTxtBtnCls" onclick="saveText()">Commit Text</span>
+							<span onclick="saveText()"><label for="commitTextBtnID" class="custom-label"><i class="fa fa-download" aria-hidden="true"></i>Commit Text</label></span><input type="button" id="commitTextBtnID" class="hiddenButton"/>
 						</div>
 						
 					</div>
@@ -195,6 +200,20 @@
 						</div>
 					</div>
 				</div> <!-- ADD SHADOWS DIV END -->
+				
+				<!-- add image div start -->
+				<div id="imgDivID" class=" hide imgDivCls padOptions imgDivVAlign">
+					<div>
+	
+					<label for="file-upload" class="custom-label">
+						<i class="fa fa-camera-retro" aria-hidden="true"></i> Upload
+					</label>
+					<input id="file-upload" type="file"/>
+					<span onclick=""><label for="commitImgBtnID" class="custom-label"><i class="fa fa-download" aria-hidden="true"></i>Commit Image</label></span><input type="button" id="commitImgBtnID" class="hiddenButton"/>
+					</div>
+					<div><p class="p_nospace">max size 500x500</p></div>
+					
+				</div><!-- ADD IMAGE DIV END -->
 					
 			</div> <!-- END LEFT WRAPPER -->
 			
@@ -203,16 +222,20 @@
 				<div id="canvasOptionsID" class="valuesCls">
 					<div><p class="p_nospace">Canvas Options:</p></div>
 					<div>
-						<label for="drawCircleCheckBoxID">Draw Circle:</label>
 						<input type="checkbox" id="drawCircleCheckBoxID" class="drawCircleCheckBoxCls"/>
+						<label for="drawCircleCheckBoxID">Draw Circle:</label>
 					</div>
 					<div>
-						<label for="gradientCheckBoxID">Gradient:</label>
 						<input type="checkbox" id="gradientCheckBoxID" class="gradientCheckBoxCls"/>
+						<label for="gradientCheckBoxID">Gradient:</label>
 					</div>
 					<div>
-						<label for="textCheckBoxID">Add Text:</label>
 						<input type="checkbox" id="textCheckBoxID" class="textCheckBoxCls"/>
+						<label for="textCheckBoxID">Add Text:</label>
+					</div>
+					<div>
+						<input type="checkbox" id="imgCheckBoxID" class="imgCheckBoxCls"/>
+						<label for="imgCheckBoxID">Add Image:</label>
 					</div>
 				</div>
 				<!-- color values from slider values inputted into text box on right wrapper -->
@@ -269,7 +292,7 @@
 
 				</div> <!-- END COLOR SLIDERS VALUES DIVS -->
 				<div id="downloadLinkDivID" class="downloadStyle">
-					<div class="downloadStyle"><span class="saveTxtBtnCls" onclick="downloadCanvas()">Download PNG</span></div>
+					<div class="downloadStyle"><span onclick="downloadCanvas()"><label for="downloadButtonID" class="custom-label"><i class="fa fa-download" aria-hidden="true"></i> Download PNG</label></span><input type="button" id="downloadButtonID" class="hiddenButton"/></div>
 				</div>
 				
 				
