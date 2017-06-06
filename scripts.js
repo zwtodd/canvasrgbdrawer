@@ -132,8 +132,28 @@ $( document ).ready( function() {
 	} );
 	
 
+/* 
+*  The following function to download the canvas as a png file was stolen from this jsfiddle: http://jsfiddle.net/wboykinm/fL0q2uce/
+*  Author notes are below. Code was modified a bit to fit into this app. Pressing link on right side of screen will initiate download.
+*
+*    Ken Fyrstenberg Nilsen
+*    Abidas Software
+*/
+
+/**
+* This is the function that will take care of image extracting and
+* setting proper filename for the download.
+* IMPORTANT: Call it from within a onclick event.
+*/
+function downloadCanvas() {
+	var link = document.getElementById("downloadLinkID");
+	var canvasId = 'mainCanvas';
+	var filename = 'myImage.png';
+	link.href = document.getElementById(canvasId).toDataURL();
+	link.download = filename;
+}
+
 // jquery: toggles visibility of gradient options divs when selecting between linear/radial div (linear or radialradio buttons)	
-	
 $(document).ready(function() {
 		$("[name=linearOrRadial]").click(function(){
 				$('.hideClassJQ').hide();
