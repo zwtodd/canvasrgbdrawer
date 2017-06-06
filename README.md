@@ -26,7 +26,9 @@ Or use whatever webserver (apache, etc) you'd like, or any webhost you may have.
 
 # Demo
 ~[This appears to be broken for some reason. Please download and run code if you wish to see it.]~
+
 [Seems to be working again. I dunno, computers are wierd, man.]
+
 You can see a demo of canvasrgbdrawer here: https://zwtodd.github.io/canvasrgbdrawer/
 
 
