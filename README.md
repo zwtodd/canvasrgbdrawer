@@ -36,5 +36,6 @@ You can see a demo of canvasrgbdrawer here: https://zwtodd.github.io/canvasrgbdr
 - Improve comments within code.
 - Possibly add more color/gradient abilities. See if adding a color can be modular and "infinite".
 - ~Download image that is produced.~ ~Works in Chrome, debugging for Edge/IE~
-- Be able to 'commit' text lines when done editting so they are permanent on the image, and then be able to add more text after that, and repeat.
+- ~Be able to 'commit' text lines when done editting so they are permanent on the image, and then be able to add more text after that, and repeat.~
 - Also be able to move uploaded images and 'commit' them to a spot and repeat as wanted.
+- Possibly changed layout to where the canvas is above on its one section, and the options/values are displayed beneath. Maybe.
