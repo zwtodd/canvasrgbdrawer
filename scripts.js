@@ -61,6 +61,10 @@ function drawCanvas( rgb, rgbgrad ) { // rgb/rgbgrad is optional parameter to be
 		drawText();
 	}
 	
+	if ( document.getElementById( "imgCheckBoxID" ).checked ) { 
+		
+	}
+	
 	
 	if(savedTexts.length > 0) {
 		let len = 0;
@@ -137,20 +141,6 @@ function saveText() {
 	
 }
 
-$(function () {
-		$(":file").change(function () {
-				if (this.files && this.files[0]) {
-					var reader = new FileReader();
-					reader.onload = imageIsLoaded;
-					reader.readAsDataURL(this.files[0]);
-				}
-			});
-	});
-
-function imageIsLoaded(e) {
-	$('#imgThumb').attr('src', e.target.result);
-};
-
 //jquery: toggle second color div and gradient options when gradient checkbox is checked
 $( document ).ready( function() {
 		$( '#gradientCheckBoxID' ).change( function() {
@@ -172,27 +162,42 @@ $(document).ready(function() {
 	});
  
 $( document ).ready( function() {
-		$( '#textCheckBoxID' ).change( function() {
-				$( "#textOptionsID" ).toggleClass("hide");
-				if(document.getElementById('imgCheckBoxID').checked) {
-					$('#imgCheckBoxID').prop('checked', false);
-					$( "#imgDivID" ).toggleClass("hide");
-				}
-			} );
-	} );
- 
-$( document ).ready( function() {
 		$( '#addTxtShadowID' ).change( function() {
 				$( "#txtShadowOptionsID" ).toggleClass("hide");
 			} );
 	} );
+ 
+ 
+$( document ).ready( function() {
+		$( '#textCheckBoxID' ).change( function() {
+				$( "#textOptionsID" ).toggleClass("hide");
+				$( "#textCanvas" ).toggleClass("hide");
+				if(document.getElementById('imgCheckBoxID').checked) {
+					$('#imgCheckBoxID').prop('checked', false);
+					$( "#imgDivID" ).toggleClass("hide");
+					$( "#imgCanvas" ).toggleClass("hide");
+				}
+			} );
+	} );
+ 
+
 	
 $( document ).ready( function() {
 		$( '#imgCheckBoxID' ).change( function() {
 				$( "#imgDivID" ).toggleClass("hide");
+				$( "#imgCanvas" ).toggleClass("hide");
 				if(document.getElementById('textCheckBoxID').checked) {
 					$('#textCheckBoxID').prop('checked', false);
 					$( "#textOptionsID" ).toggleClass("hide");
+					$( "#textCanvas" ).toggleClass("hide");
 				}
 			} );
 	} );
+/*	
+function returnElId(id) { return document.getElementById(id); }
+
+$(document).ready(function() {
+	document.getElementById("file-upload").addEventListener("change", drawImgs, false);
+});
+
+*/

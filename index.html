@@ -17,6 +17,7 @@
 		<!-- javascript and css include, include dragtext.js, in seperate file for readability-->
 		<script src="download.js"></script>
 		<script src="dragtext.js"></script>
+		<script src="dragimg.js"></script>
 		<script src="scripts.js"></script>
 		<link href="main.css" rel="stylesheet" type="text/css"/>
 		<script src="https://use.fontawesome.com/a04ff08cf6.js"></script>
@@ -34,7 +35,9 @@
 					<canvas id="mainCanvas" class="mainCanvasCls" width="500" height="500">
 						[Canvas is unavailable in your browser. Consider updating...]
 					</canvas>
-					<canvas id="textCanvas" class="textCanvasCls" width="500" height="500">
+					<canvas id="textCanvas" class="textCanvasCls hide" width="500" height="500">
+					</canvas>
+					<canvas id="imgCanvas" class="imgCanvasCls hide" width="500" height="500">
 					</canvas>
 				</div> <!-- END OF CANVAS WRAPPER -->
 				
@@ -169,8 +172,8 @@
 								<option value="72px">72</option>
 							</select>
 							<input type="color" id="addTxtColorID"/>
-							<label for="addTxtShadowID">Add Shadows</label>
 							<input type="checkbox" id="addTxtShadowID"/>
+							<label for="addTxtShadowID">Add Shadows</label>
 							<span onclick="saveText()"><label for="commitTextBtnID" class="custom-label"><i class="fa fa-download" aria-hidden="true"></i>Commit Text</label></span><input type="button" id="commitTextBtnID" class="hiddenButton"/>
 						</div>
 						

@@ -29,8 +29,13 @@ label {
 	z-index: 0;
 }
 
-#textCanvas {
+#imgCanvas {
 	z-index: 1;
+	margin-left: -500px;
+}
+
+#textCanvas {
+	z-index: 2;
 	margin-left: -500px;
 }
 
