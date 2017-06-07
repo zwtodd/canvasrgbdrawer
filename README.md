@@ -36,20 +36,22 @@ You can see a demo of canvasrgbdrawer here: https://zwtodd.github.io/canvasrgbdr
 - ~Make text draggable around the canvas.~
 - Prettify CSS code and see what improvements can be made. Fear of redundancy or overused/misused attributes. Flexboxes are new to me.
 - See about having the app output the CSS code for use in other projects. 
-- Add images to the canvas with custom sizes and be able to place and move on canvas.
+- ~Add images to the canvas~ with custom sizes ~and be able to place and move on canvas~.
 - Improve comments within code.
 - Possibly add more color/gradient abilities. See if adding a color can be modular and "infinite".
 - ~Download image that is produced.~ ~Works in Chrome, debugging for Edge/IE~
 - ~Be able to 'commit' text lines when done editting so they are permanent on the image, and then be able to add more text after that, and repeat.~
-- Also be able to move uploaded images and 'commit' them to a spot and repeat as wanted.
+- ~Also be able to move uploaded images~ and 'commit' them to a spot and repeat as wanted.
 - Possibly changed layout to where the canvas is above on its one section, and the options/values are displayed beneath. Maybe.
+- Improve hitbox detection on image dragging.
+- Make image dragging "smoother". Currently the image will redraw itself at the mouse x,y. Going to change it to smoothly draw itself from wherever it is currently drawn.
+- Make images be resizable on the canvas. I found a code snippet to due that via CSS somewhere.
 
 # "Borrowed Code"
-This project is a learning expierence for me all around. Each item on the todo list is getting checked off and that is an awesome feeling. However, learning stuff for the sake of learning can almost be like reiventing the wheel. There are snippets of code that I have taken off sites like jsfiddle. Each snippet is commented with a link back to where I found it. As of right now, the only file I haven't composed myself is download.js (used to easily download the canvas as a .png), which can be found on github:
-- https://github.com/rndme/download
+This project is a learning expierence for me all around. Each item on the todo list is getting checked off and that is an awesome feeling. However, learning stuff for the sake of learning can almost be like reiventing the wheel. There are snippets of code that I have taken off sites like jsfiddle and stack exchange. Each snippet is commented with a link back to where I found it within the code. Any large portions or libraries or other repos are listed below.
 
 # External libraries
-- jQuery
-- GoogleFonts (and WebFontLoader)
-- Download.JS
+- jQuery - https://jquery.com/
+- GoogleFonts (and WebFontLoader) - https://fonts.google.com/
+- Download.JS - https://github.com/rndme/download
 - Font Awesome by Dave Gandy - http://fontawesome.io
