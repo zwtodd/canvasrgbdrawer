@@ -52,4 +52,4 @@ This project is a learning expierence for me all around. Each item on the todo l
 - jQuery
 - GoogleFonts (and WebFontLoader)
 - Download.JS
-- Font Awesome
+- Font Awesome by Dave Gandy - http://fontawesome.io
