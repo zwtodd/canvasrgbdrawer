@@ -1,5 +1,5 @@
 // GLOBALS
-var savedTexts = [];
+var savedCanvas = [];
 
 // automatically update the canvas every 33.33ms (approx 30fps)
 function init() {
@@ -61,15 +61,10 @@ function drawCanvas( rgb, rgbgrad ) { // rgb/rgbgrad is optional parameter to be
 		drawText();
 	}
 	
-	if ( document.getElementById( "imgCheckBoxID" ).checked ) { 
-		
-	}
-	
-	
-	if(savedTexts.length > 0) {
+	if(savedCanvas.length > 0) {
 		let len = 0;
-		while(len < savedTexts.length) {
-			context.drawImage(savedTexts[len], 0, 0); //the true context of the canvas
+		while(len < savedCanvas.length) {
+			context.drawImage(savedCanvas[len], 0, 0); //the true context of the canvas
 			len++;
 		}
 	}
@@ -131,14 +126,16 @@ function downloadCanvas() {
 	download(data, strFileName, strMimeType);
 }
 
-function saveText() {
-	var tcanvas = document.getElementById( 'textCanvas' );
+// saves the temporary canvas (img or text) into the saved canvas array for later redrawing in drawCanvas()
+function saveTempCanvas(canvas) {
+	var tcanvas = document.getElementById( canvas );
 	var img = new Image();
 	img.src = tcanvas.toDataURL("image/png");
-	savedTexts.push(img);
+	savedCanvas.push(img);
 	document.getElementById('addTxtBxID').value = "";  // remove text from input field
+	document.getElementById('file-upload').value = ""; //set input for image upload to null to clear
 	reInitTextVars(); // from dragtext.js, resets the x and y of text coords back to original spots
-	
+	imgCommitted = true;		//imgCommitted is declared as global in dragimg.js
 }
 
 //jquery: toggle second color div and gradient options when gradient checkbox is checked

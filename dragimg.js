@@ -1,6 +1,10 @@
 // image upload code stolen from https://gist.github.com/steveosoule/5980212
 // and merged with https://stackoverflow.com/a/28520835/8015340 for validation of file type 
 // heavily modified to fit this app..
+
+// GLOBALS
+var imgCommitted = false; 		//sets to true after a image is committed in scripts.js, stopping repeat images being show on campas. sets to false when new image is uploaded.
+
 $(document).ready(function() {
 
 		var	image = document.getElementById('file-upload'),
@@ -22,6 +26,7 @@ $(document).ready(function() {
 
 		fileReader.onload = function (e) {
 			img.src = e.target.result;
+			imgCommitted = false;		// allows for drawing of new images on new upload
 		};
 
 		img.onload = function() {
@@ -54,8 +59,11 @@ $(document).ready(function() {
 				console.log('newh2: ' + newh);
 				
 			}
-
-			drawImage();
+			
+			if(!imgCommitted) {		//no drawing images after it has been committed until new img is uploaded
+				drawImage();		// intial drawing of image before mouse events
+			}
+			
 		};
 
 		image.addEventListener('change', function() {
@@ -104,7 +112,7 @@ $(document).ready(function() {
 		function handleMouseMove(e){
 			// if the drag flag is set, clear the canvas and draw the image
 			// TODO: need to find way to not redraw image from mouse position, but smoothly from whatever position it is currently at.
-			if(isDragging){
+			if(isDragging && !imgCommitted){
 				context.clearRect(0,0,canvasWidth,canvasHeight);
 				canMouseX = e.pageX - canvas.offsetLeft;
 				canMouseY = e.pageY - canvas.offsetTop;

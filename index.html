@@ -174,7 +174,7 @@
 							<input type="color" id="addTxtColorID"/>
 							<input type="checkbox" id="addTxtShadowID"/>
 							<label for="addTxtShadowID">Add Shadows</label>
-							<span onclick="saveText()"><label for="commitTextBtnID" class="custom-label"><i class="fa fa-download" aria-hidden="true"></i>Commit Text</label></span><input type="button" id="commitTextBtnID" class="hiddenButton"/>
+							<span onclick="saveTempCanvas(textCanvas)"><label for="commitTextBtnID" class="custom-label"><i class="fa fa-download" aria-hidden="true"></i>Commit Text</label></span><input type="button" id="commitTextBtnID" class="hiddenButton"/>
 						</div>
 						
 					</div>
@@ -212,7 +212,7 @@
 						<i class="fa fa-camera-retro" aria-hidden="true"></i> Upload
 					</label>
 					<input id="file-upload" type="file"/>
-					<span onclick=""><label for="commitImgBtnID" class="custom-label"><i class="fa fa-download" aria-hidden="true"></i>Commit Image</label></span><input type="button" id="commitImgBtnID" class="hiddenButton"/>
+					<span onclick="saveTempCanvas('imgCanvas')"><label for="commitImgBtnID" class="custom-label"><i class="fa fa-download" aria-hidden="true"></i>Commit Image</label></span><input type="button" id="commitImgBtnID" class="hiddenButton"/>
 					</div>
 					<div><p class="p_nospace">max size 500x500</p></div>
 					
