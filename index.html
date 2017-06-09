@@ -2,25 +2,6 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<!-- google fonts for user user, loaded with font loader for speed -->
-		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-		<script>
-			WebFont.load({
-					google: {
-						families: ['Abril Fatface','Acme','Archivo Black','Bitter','Dancing Script','Indie Flower','Montserrat','Open Sans','Pacifico','Roboto','Shadows Into Light','Source Sans Pro']
-					}
-				});
-		</script>
-		<!-- jquery api-->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		
-		<!-- javascript and css include, include dragtext.js, in seperate file for readability-->
-		<script src="download.js"></script>
-		<script src="dragtext.js"></script>
-		<script src="dragimg.js"></script>
-		<script src="scripts.js"></script>
-		<link href="main.css" rel="stylesheet" type="text/css"/>
-		<script src="https://use.fontawesome.com/a04ff08cf6.js"></script>
 		<title>testing</title>
 
 	</head>
@@ -118,21 +99,7 @@
 						<div>
 							<input type="text" id="addTxtBxID" placeholder="Enter text..."/>
 							<select id="addTxtFontID" size="1">
-								<option value="arial">Arial</option>
-								<option value="times new roman">Times New Roman</option>
-								<option value="courier new" selected>Courier New</option>
-								<option value="Roboto">Roboto</option>
-								<option value="Open Sans">Open Sans</option>
-								<option value="Source Sans Pro">Source Sans Pro</option>
-								<option value="Montserrat">Montserrat</option>
-								<option value="Bitter">Bitter</option>
-								<option value="Indie Flower">Indie Flower</option>
-								<option value="Pacifico">Pacifico</option>
-								<option value="Abril Fatface">Abril Fatface</option>
-								<option value="Shadows Into Light">Shadows Into Light</option>
-								<option value="Dancing Script">Dancing Script</option>
-								<option value="Archivo Black">Archivo Black</option>
-								<option value="Acme">Acme</option>
+								<option value="" disabled selected>Select your font</option>
 							</select>
 						</div>
 						<div class="smallerFont">
@@ -218,7 +185,6 @@
 					
 				</div><!-- ADD IMAGE DIV END -->
 				<div id="undoButtonDivID" class="hide">
-					
 					<div class="undoStyle"><span onclick="undoCommit()"><label for="undoButtonID" class="custom-label"><i class="fa fa-undo" aria-hidden="true"></i> Undo Last Commit</label></span><input type="button" id="undoButtonID" class="hiddenButton"/></div>
 				</div>
 					
@@ -308,6 +274,30 @@
 			</div> <!-- END RIGHT WRAPPER -->
 
 		</div> <!-- END OF MAIN WRAPPER DIV -->
+		
+		<!-- SCRIPTS START -->
+		
+		<!-- google fonts for user user, loaded with font loader for speed -->
+		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+		<script>
+			WebFont.load({
+					google: {
+						families: ['Abril Fatface','Acme','Archivo Black','Bitter','Dancing Script','Indie Flower','Montserrat','Open Sans','Pacifico','Roboto','Shadows Into Light','Source Sans Pro']
+					}
+				});
+		</script>
+		<!-- jquery api-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		
+		<!-- javascript and css include, include dragtext.js, in seperate file for readability-->
+		<script src="download.js"></script>
+		<script src="dragtext.js"></script>
+		<script src="dragimg.js"></script>
+		<script src="scripts.js"></script>
+		<script src="googleFontsArrayPattern.js"></script>
+		<script src="googleFontsLoader.js"></script>
+		<link href="main.css" rel="stylesheet" type="text/css"/>
+		<script src="https://use.fontawesome.com/a04ff08cf6.js"></script>
 		
 	</body>
 </html>

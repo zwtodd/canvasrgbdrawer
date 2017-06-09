@@ -39,6 +39,9 @@ function drawText() {
 	var userFontColor = document.getElementById('addTxtColorID').value;
 		
 	var userFont = userFontSelect.options[userFontSelect.selectedIndex].value;
+	if(userFont == "") {
+		userFont = 'Courier New';
+	}
 	var userFontSize = userFontSizeSelect.options[userFontSizeSelect.selectedIndex].value;
 	
 	dragContext.beginPath();
