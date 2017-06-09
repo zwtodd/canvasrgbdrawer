@@ -174,7 +174,7 @@
 							<input type="color" id="addTxtColorID"/>
 							<input type="checkbox" id="addTxtShadowID"/>
 							<label for="addTxtShadowID">Add Shadows</label>
-							<span onclick="saveTempCanvas(textCanvas)"><label for="commitTextBtnID" class="custom-label"><i class="fa fa-download" aria-hidden="true"></i>Commit Text</label></span><input type="button" id="commitTextBtnID" class="hiddenButton"/>
+							<span onclick="saveTempCanvas('textCanvas', 1)"><label for="commitTextBtnID" class="custom-label"><i class="fa fa-download" aria-hidden="true"></i>Commit Text</label></span><input type="button" id="commitTextBtnID" class="hiddenButton"/>
 						</div>
 						
 					</div>
@@ -208,15 +208,19 @@
 				<div id="imgDivID" class=" hide imgDivCls padOptions imgDivVAlign">
 					<div>
 	
-					<label for="file-upload" class="custom-label">
-						<i class="fa fa-camera-retro" aria-hidden="true"></i> Upload
-					</label>
-					<input id="file-upload" type="file"/>
-					<span onclick="saveTempCanvas('imgCanvas')"><label for="commitImgBtnID" class="custom-label"><i class="fa fa-download" aria-hidden="true"></i>Commit Image</label></span><input type="button" id="commitImgBtnID" class="hiddenButton"/>
+						<label for="file-upload" class="custom-label">
+							<i class="fa fa-camera-retro" aria-hidden="true"></i> Upload
+						</label>
+						<input id="file-upload" type="file"/>
+						<span onclick="saveTempCanvas('imgCanvas', 2)"><label for="commitImgBtnID" class="custom-label"><i class="fa fa-download" aria-hidden="true"></i>Commit Image</label></span><input type="button" id="commitImgBtnID" class="hiddenButton"/>
 					</div>
 					<div><p class="p_nospace">max size 500x500</p></div>
 					
 				</div><!-- ADD IMAGE DIV END -->
+				<div id="undoButtonDivID" class="hide">
+					
+					<div class="undoStyle"><span onclick="undoCommit()"><label for="undoButtonID" class="custom-label"><i class="fa fa-undo" aria-hidden="true"></i> Undo Last Commit</label></span><input type="button" id="undoButtonID" class="hiddenButton"/></div>
+				</div>
 					
 			</div> <!-- END LEFT WRAPPER -->
 			
