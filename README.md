@@ -11,6 +11,8 @@ A single line of text can be overlaid on the drawn element. Shadow effects can b
 
 The fonts in use are arbitrary. I chose some at random from Google Fonts that looked appealing. All fonts are loaded with the web font loader, as I found that to be the fastest due to the number of fonts in use (12 at time of writing).
 
+Note: I made a dynamic web font loader thats available in another repo of mine that I now use here as well. Users can use any font from Google Fonts now.
+
 RGB and Hex values are outputted to the right.
 
 An example of the type of image produced is available on the wiki page.
@@ -25,10 +27,6 @@ I use Aprelium Abyss webserver hosted on my computer to run via localhost. Save 
 Or use whatever webserver (apache, etc) you'd like, or any webhost you may have.
 
 # Demo
-~[This appears to be broken for some reason. Please download and run code if you wish to see it.]~
-
-[Seems to be working again. I dunno, computers are wierd, man.]
-
 You can see a demo of canvasrgbdrawer here: https://zwtodd.github.io/canvasrgbdrawer/
 
 
@@ -46,7 +44,8 @@ You can see a demo of canvasrgbdrawer here: https://zwtodd.github.io/canvasrgbdr
 - Improve hitbox detection on image dragging.
 - Make image dragging "smoother". Currently the image will redraw itself at the mouse x,y. Going to change it to smoothly draw itself from wherever it is currently drawn.
 - Make images be resizable on the canvas. I found a code snippet to due that via CSS somewhere.
-- Make undo button for previous commit (Text or image). In progress...
+- ~Make undo button for previous commit (Text or image). In progress...~
+- ~Add better font support.~
 
 # "Borrowed Code"
 This project is a learning expierence for me all around. Each item on the todo list is getting checked off and that is an awesome feeling. However, learning stuff for the sake of learning can almost be like reiventing the wheel. There are snippets of code that I have taken off sites like jsfiddle and stack exchange. Each snippet is commented with a link back to where I found it within the code. Any large portions or libraries or other repos are listed below.
