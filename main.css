@@ -135,6 +135,12 @@ label {
 	cursor: pointer; 
 }
 
+.undoStyle {
+	text-align: center;
+	padding: 5px 0 5px 0;
+	cursor: pointer; 
+}
+
 .imgClass img {
 	border: 1px solid #ddd;
 	border-radius: 2px;

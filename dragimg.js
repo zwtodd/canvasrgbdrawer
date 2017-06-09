@@ -4,16 +4,13 @@
 
 // GLOBALS
 var imgCommitted = false; 		//sets to true after a image is committed in scripts.js, stopping repeat images being show on campas. sets to false when new image is uploaded.
-
+img = new Image();
 $(document).ready(function() {
 
 		var	image = document.getElementById('file-upload'),
 		canvas = document.getElementById('imgCanvas'),
 		context = canvas.getContext('2d'),
 		fileReader = new FileReader(),
-		img = new Image(),
-		x = 1,
-		y = 1, 
 		neww,newh;
 		
 		var canvasOffset=$("#imgCanvas").offset();
@@ -38,8 +35,8 @@ $(document).ready(function() {
 			var height = img.height;    // Current image width
 			neww = img.width;    // Current image width, will be used if no resizing done.
 			newh = img.height;    // Current image height, will be used if no resizing done.
-			canMouseX = neww;
-			canMouseY = newh;
+			canMouseX = 1;
+			canMouseY = 1;
 
 			// Check if the current width is larger than the max
 			if(width > maxWidth){
@@ -60,9 +57,8 @@ $(document).ready(function() {
 				
 			}
 			
-			if(!imgCommitted) {		//no drawing images after it has been committed until new img is uploaded
-				drawImage();		// intial drawing of image before mouse events
-			}
+
+			drawImage();		// intial drawing of image before mouse events
 			
 		};
 
@@ -84,12 +80,8 @@ $(document).ready(function() {
 			var dataUrl;
 			context.clearRect(0,0,canvasWidth,canvasHeight);
    
-			if (img.width) {
-				image_width = neww;
-				image_height = newh;
-
-				
-				context.drawImage(img, x, y, neww, newh);			
+			if (img.width && !imgCommitted) { //no drawing images after it has been committed until new img is uploaded
+				context.drawImage(img, canMouseX, canMouseY, neww, newh);			
 			}
 			dataUrl = canvas.toDataURL();
 		}
@@ -101,29 +93,24 @@ $(document).ready(function() {
 			//}
 		}
 
-		function handleMouseUp(e){
-			isDragging=false;
-		}
-
-		function handleMouseOut(e){
+		function handleMouseUporOut(e){
 			isDragging=false;
 		}
 
 		function handleMouseMove(e){
 			// if the drag flag is set, clear the canvas and draw the image
 			// TODO: need to find way to not redraw image from mouse position, but smoothly from whatever position it is currently at.
-			if(isDragging && !imgCommitted){
-				context.clearRect(0,0,canvasWidth,canvasHeight);
+			if(isDragging && !imgCommitted){;
 				canMouseX = e.pageX - canvas.offsetLeft;
 				canMouseY = e.pageY - canvas.offsetTop;
-				context.drawImage(img,canMouseX,canMouseY, neww, newh);
+				drawImage();
 			}
 		}
 
 		$("#imgCanvas").mousedown(function(e){handleMouseDown(e);});
 		$("#imgCanvas").mousemove(function(e){handleMouseMove(e);});
-		$("#imgCanvas").mouseup(function(e){handleMouseUp(e);});
-		$("#imgCanvas").mouseout(function(e){handleMouseOut(e);});
+		$("#imgCanvas").mouseup(function(e){handleMouseUporOut(e);});
+		$("#imgCanvas").mouseout(function(e){handleMouseUporOut(e);});
 
 
 		drawImage();

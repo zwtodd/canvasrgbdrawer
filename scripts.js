@@ -127,19 +127,28 @@ function downloadCanvas() {
 }
 
 // saves the temporary canvas (img or text) into the saved canvas array for later redrawing in drawCanvas()
-function saveTempCanvas(canvas) {
+function saveTempCanvas(canvas,whichCanvas) {		// canvas = which temp canvasto save from. whichCanvas signifies what specific inputs to clear. if text is committed, clears the text input, or if image is comitted, clears the file input
 	var tcanvas = document.getElementById( canvas );
-	var img = new Image();
-	img.src = tcanvas.toDataURL("image/png");
-	savedCanvas.push(img);
-	document.getElementById('addTxtBxID').value = "";  // remove text from input field
-	document.getElementById('file-upload').value = ""; //set input for image upload to null to clear
-	reInitTextVars(); // from dragtext.js, resets the x and y of text coords back to original spots
-	imgCommitted = true;		//imgCommitted is declared as global in dragimg.js
+	var tcxt = tcanvas.getContext('2d');
+	var timg = new Image();
+	timg.src = tcanvas.toDataURL("image/png");
+	savedCanvas.push(timg);
+	if(whichCanvas === 1) {
+		document.getElementById('addTxtBxID').value = "";  // remove text from input field
+		reInitTextVars(); // from dragtext.js, resets the x and y of text coords back to original spots
+	}else if(whichCanvas === 2) {
+		document.getElementById('file-upload').value = ""; //set input for image upload to null to clear
+		imgCommitted = true;		//imgCommitted is declared as global in dragimg.js
+		tcxt.clearRect( 0, 0, tcanvas.width, tcanvas.height );
+	}
 }
 
-//jquery: toggle second color div and gradient options when gradient checkbox is checked
-$( document ).ready( function() {
+function undoCommit() {
+	savedCanvas.pop();
+}
+
+// jquery: handles the toggling of div visibility based on which option is chosen.
+$(document).ready(function() {
 		$( '#gradientCheckBoxID' ).change( function() {
 				$( "#colorTwoSlidersID" ).toggleClass("hide");
 				$( "#colorTwoSlidersID" ).toggleClass("colorSlidersCls");
@@ -148,24 +157,15 @@ $( document ).ready( function() {
 				$( "#colorTwoValues" ).toggleClass("hide");
 
 			} );
-	} );
-
-// jquery: toggles visibility of gradient options divs when selecting between linear/radial div (linear or radialradio buttons)	
-$(document).ready(function() {
 		$("[name=linearOrRadial]").click(function(){
 				$('.hideClassJQ').hide();
 				$("#gradient-"+$(this).val()).show();
 			});
-	});
- 
-$( document ).ready( function() {
+
 		$( '#addTxtShadowID' ).change( function() {
 				$( "#txtShadowOptionsID" ).toggleClass("hide");
 			} );
-	} );
- 
- 
-$( document ).ready( function() {
+
 		$( '#textCheckBoxID' ).change( function() {
 				$( "#textOptionsID" ).toggleClass("hide");
 				$( "#textCanvas" ).toggleClass("hide");
@@ -175,11 +175,7 @@ $( document ).ready( function() {
 					$( "#imgCanvas" ).toggleClass("hide");
 				}
 			} );
-	} );
- 
 
-	
-$( document ).ready( function() {
 		$( '#imgCheckBoxID' ).change( function() {
 				$( "#imgDivID" ).toggleClass("hide");
 				$( "#imgCanvas" ).toggleClass("hide");
@@ -189,12 +185,18 @@ $( document ).ready( function() {
 					$( "#textCanvas" ).toggleClass("hide");
 				}
 			} );
+			
+		$('input[type="checkbox"]').click(function () {
+				if ($('#textCheckBoxID').is(':checked') || $('#imgCheckBoxID' ).is(':checked')) $('#undoButtonDivID').show();
+				if ($('#textCheckBoxID').is(':not(:checked)') && $('#imgCheckBoxID' ).is(':not(:checked)')) $('#undoButtonDivID').hide();
+			});
 	} );
+
 /*	
 function returnElId(id) { return document.getElementById(id); }
 
 $(document).ready(function() {
-	document.getElementById("file-upload").addEventListener("change", drawImgs, false);
+document.getElementById("file-upload").addEventListener("change", drawImgs, false);
 });
 
 */
