@@ -1,5 +1,6 @@
 // GLOBALS
 var savedCanvas = [];
+var imgDrawInterval;
 
 // automatically update the canvas every 33.33ms (approx 30fps)
 function init() {
@@ -133,16 +134,24 @@ function saveTempCanvas(canvas,whichCanvas) {		// canvas = which temp canvasto s
 	var timg = new Image();
 	timg.src = tcanvas.toDataURL("image/png");
 	savedCanvas.push(timg);
-	if(whichCanvas === 1) {
+	switch(whichCanvas) {
+		case 1:
 		document.getElementById('addTxtBxID').value = "";  // remove text from input field
 		reInitTextVars(); // from dragtext.js, resets the x and y of text coords back to original spots
-	}else if(whichCanvas === 2) {
+		break;
+		case 2:
 		document.getElementById('file-upload').value = ""; //set input for image upload to null to clear
 		imgCommitted = true;		//imgCommitted is declared as global in dragimg.js
 		tcxt.clearRect( 0, 0, tcanvas.width, tcanvas.height );
+		break;
 	}
+	
+	//reset opacity slider and value textbox to full opacity
+	document.getElementById('opacityRangeID').value = 1;
+	document.getElementById('opacityRangeValID').value = 1;
 }
 
+// clears the last commit saved to savedCanvas[]. This will remove it from the drawing sequence in drawCanvas()
 function undoCommit() {
 	savedCanvas.pop();
 }
@@ -179,16 +188,20 @@ $(document).ready(function() {
 		$( '#imgCheckBoxID' ).change( function() {
 				$( "#imgDivID" ).toggleClass("hide");
 				$( "#imgCanvas" ).toggleClass("hide");
+				if ($('#imgCheckBoxID' ).is(':checked')) imgDrawInterval = setInterval($.drawImage(), 33.33);
+				else clearInterval(imgDrawInterval);
 				if(document.getElementById('textCheckBoxID').checked) {
 					$('#textCheckBoxID').prop('checked', false);
 					$( "#textOptionsID" ).toggleClass("hide");
 					$( "#textCanvas" ).toggleClass("hide");
 				}
 			} );
-			
-		$('input[type="checkbox"]').click(function () {
-				if ($('#textCheckBoxID').is(':checked') || $('#imgCheckBoxID' ).is(':checked')) $('#undoButtonDivID').show();
-				if ($('#textCheckBoxID').is(':not(:checked)') && $('#imgCheckBoxID' ).is(':not(:checked)')) $('#undoButtonDivID').hide();
+		
+		// if either the add text or add image checkbox is checked, display the undo button
+		// if neigther is checked, hide the undo button
+		$("input:checkbox.textAndImgClass").click(function () {
+				if ($('#textCheckBoxID').is(':checked') || $('#imgCheckBoxID' ).is(':checked')) $('#textAndImgOptionsDiv').show();
+				if ($('#textCheckBoxID').is(':not(:checked)') && $('#imgCheckBoxID' ).is(':not(:checked)')) $('#textAndImgOptionsDiv').hide();
 			});
 	} );
 

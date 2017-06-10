@@ -184,9 +184,22 @@
 					<div><p class="p_nospace">max size 500x500</p></div>
 					
 				</div><!-- ADD IMAGE DIV END -->
-				<div id="undoButtonDivID" class="hide">
-					<div class="undoStyle"><span onclick="undoCommit()"><label for="undoButtonID" class="custom-label"><i class="fa fa-undo" aria-hidden="true"></i> Undo Last Commit</label></span><input type="button" id="undoButtonID" class="hiddenButton"/></div>
-				</div>
+				
+				<!-- Options for both text and images -->
+				<div id="textAndImgOptionsDiv" class="hide">
+					<div class="textAndImgOptionsClass valuesCls textBoxTinySizeValues">
+						<div id="opacityRangeDivID">
+							<div style="text-align: center;">
+								<label for="opacitRangeID" class="custom-label"><i class="fa fa-eye" aria-hidden="true"></i> Opacity:</label>
+								<input type="range" id="opacityRangeID" class="smallerRangeWidth" min="0" max="1" step=".01" value="1" oninput="opacityRangeValID.value=opacityRangeID.value"/>
+								<input type="text" id="opacityRangeValID" value="1" style="text-align: center;" readonly/>
+							</div>
+						</div>
+					</div>
+					<div class="undoStyle">
+						<span onclick="undoCommit()"><label for="undoButtonID" class="custom-label"><i class="fa fa-undo" aria-hidden="true"></i> Undo Last Commit</label></span><input type="button" id="undoButtonID" class="hiddenButton"/>
+					</div>
+				</div><!-- END of Options for both text and images -->
 					
 			</div> <!-- END LEFT WRAPPER -->
 			
@@ -203,11 +216,11 @@
 						<label for="gradientCheckBoxID">Gradient:</label>
 					</div>
 					<div>
-						<input type="checkbox" id="textCheckBoxID" class="textCheckBoxCls"/>
+						<input type="checkbox" id="textCheckBoxID" class="textCheckBoxCls textAndImgClass"/>
 						<label for="textCheckBoxID">Add Text:</label>
 					</div>
 					<div>
-						<input type="checkbox" id="imgCheckBoxID" class="imgCheckBoxCls"/>
+						<input type="checkbox" id="imgCheckBoxID" class="imgCheckBoxCls textAndImgClass"/>
 						<label for="imgCheckBoxID">Add Image:</label>
 					</div>
 				</div>
@@ -276,27 +289,17 @@
 		</div> <!-- END OF MAIN WRAPPER DIV -->
 		
 		<!-- SCRIPTS START -->
-		
-		<!-- google fonts for user user, loaded with font loader for speed -->
-		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-		<script>
-			WebFont.load({
-					google: {
-						families: ['Abril Fatface','Acme','Archivo Black','Bitter','Dancing Script','Indie Flower','Montserrat','Open Sans','Pacifico','Roboto','Shadows Into Light','Source Sans Pro']
-					}
-				});
-		</script>
 		<!-- jquery api-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		
-		<!-- javascript and css include, include dragtext.js, in seperate file for readability-->
+		<!-- javascript and css include, -->
+		<link href="main.css" rel="stylesheet" type="text/css"/>
 		<script src="download.js"></script>
 		<script src="dragtext.js"></script>
 		<script src="dragimg.js"></script>
 		<script src="scripts.js"></script>
 		<script src="googleFontsArrayPattern.js"></script>
 		<script src="googleFontsLoader.js"></script>
-		<link href="main.css" rel="stylesheet" type="text/css"/>
 		<script src="https://use.fontawesome.com/a04ff08cf6.js"></script>
 		
 	</body>

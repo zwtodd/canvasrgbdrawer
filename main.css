@@ -113,6 +113,10 @@ label {
 	padding: 1px;
 }
 
+.textBoxTinySizeValues input {
+	width: 50px;
+}
+
 .hide{
 	display: none;
 }
@@ -169,6 +173,12 @@ input[type="file"] {
 
 .imgDivVAlign {
 	vertical-align: middle;
+}
+
+.textAndImgOptionsClass {
+	justify-content: center;
+	/*align-items: flex-start;*/
+	
 }
 
 /*** custom checkboxes ***/

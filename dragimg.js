@@ -10,6 +10,7 @@ $(document).ready(function() {
 		var	image = document.getElementById('file-upload'),
 		canvas = document.getElementById('imgCanvas'),
 		context = canvas.getContext('2d'),
+		changeOpacity = document.getElementById('opacityRangeID'),
 		fileReader = new FileReader(),
 		neww,newh;
 		
@@ -58,7 +59,7 @@ $(document).ready(function() {
 			}
 			
 
-			drawImage();		// intial drawing of image before mouse events
+			$.drawImage();		// intial drawing of image before mouse events
 			
 		};
 
@@ -75,15 +76,22 @@ $(document).ready(function() {
 				event.preventDefault();
 				fileReader.readAsDataURL(event.dataTransfer.files[0]);
 			});
+			
+			// when the opacity slider changes, the image is redrawn with new globalAlpha setting in drawImage()
+		changeOpacity.addEventListener('change', function(event) {
+				$.drawImage();
+			});
 
-		function drawImage() {
-			var dataUrl;
+		jQuery.drawImage =  function drawImage() {
 			context.clearRect(0,0,canvasWidth,canvasHeight);
    
 			if (img.width && !imgCommitted) { //no drawing images after it has been committed until new img is uploaded
-				context.drawImage(img, canMouseX, canMouseY, neww, newh);			
+				context.save();
+				context.globalAlpha = document.getElementById('opacityRangeID').value;		// sets opacity of image via user input
+				context.drawImage(img, canMouseX, canMouseY, neww, newh);
+				console.log(context.globalAlpha);
+				context.restore();		
 			}
-			dataUrl = canvas.toDataURL();
 		}
 
 		function handleMouseDown(e){
@@ -103,7 +111,7 @@ $(document).ready(function() {
 			if(isDragging && !imgCommitted){;
 				canMouseX = e.pageX - canvas.offsetLeft;
 				canMouseY = e.pageY - canvas.offsetTop;
-				drawImage();
+				$.drawImage();
 			}
 		}
 
@@ -113,7 +121,7 @@ $(document).ready(function() {
 		$("#imgCanvas").mouseout(function(e){handleMouseUporOut(e);});
 
 
-		drawImage();
+		//$.drawImage();
 		
 
 	});

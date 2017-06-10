@@ -48,14 +48,14 @@ function drawText() {
 	dragContext.font = userFontSize + " " + userFont;
 	dragContext.fillStyle = userFontColor;
 	dragContext.textAlign = "center";
-		
+	dragContext.save();
 	//checks if user wants a shadow on the text, if no shadow is selected, sets attributes equal to 0
 	if(document.getElementById('addTxtShadowID').checked) {
-		dragContext.save(); // save the context before drawing shadows, and restore it later, otherwise shadows will be drawn on all elements of canvas (circle/rect)
 		dragContext.shadowOffsetX = document.getElementById('shadowXOffID').value;
 		dragContext.shadowOffsetY = document.getElementById('shadowYOffValID').value;
 		dragContext.shadowBlur = document.getElementById('shadowBlurValID').value;
 		dragContext.shadowColor = document.getElementById('shadowColorID').value;
+		
 	} else {
 		dragContext.shadowOffsetX = 0;
 		dragContext.shadowOffsetY = 0;
@@ -65,8 +65,9 @@ function drawText() {
 		
 	//Fill text in
 	dragContext.clearRect( 0, 0, dragCanvas.width, dragCanvas.height );
+	dragContext.globalAlpha = document.getElementById('opacityRangeID').value;		// sets opacity of text via user input
 	dragContext.fillText(userText, dragX, dragY);
-	dragContext.restore(); // restore state of context
+	dragContext.restore();
 	dragContext.closePath();
 }
 
