@@ -3,21 +3,18 @@
 
 This app was created to aid my own learning of html5/javascript/css. If there is a way to make it better, especially the CSS file, I'd love to see how.
 
-The app is simple. It takes user input in form of range inputs to adjust the rgb values of a canvas element (either a rectangle or circle).
+CanvasRGBDrawer features three canvses on top of one another. Two temporary canvses are used as placeholders for text and images, respectively. The user can edit text/image positions, color, shadows, and opacity on these temp canvses, then save the temp canvas to the main canvas when they are done.
 
-The user can have one solid color or choose to add a second color for a gradient. Linear and radial gradients are supported.
+The main canvas holds all saved data, as well as the background color and gradient (if any). The user can undo their last save, or 'commit', via the undo button. This removes the last saved temporary canvas from the main draw sequence.
 
-A single line of text can be overlaid on the drawn element. Shadow effects can be applied to the text, but not the drawn element. All colors are editable.
+All data is editable via inputs, and shown via labels/textboxes. RGB and Hex values are outputted on the right.
 
-The fonts in use are arbitrary. I chose some at random from Google Fonts that looked appealing. All fonts are loaded with the web font loader, as I found that to be the fastest due to the number of fonts in use (12 at time of writing).
+A custom Google Font Loader is being used to dynamically load all Google Fonts for the canvas. I made it myself and am quite proud of it =).
 
-Note: I made a dynamic web font loader thats available in another repo of mine that I now use here as well. Users can use any font from Google Fonts now.
+The project is a mixture of javascript/jQuery/CSS/HTML. It is a learning project, so some things are done one way, and others another way. For example, text drawing is nearly pure JS, while image drawing is jQuery/vanilla JS mixed. The main scripts.js is all over the place.
 
-RGB and Hex values are outputted to the right.
+New functions are added when I think of them. I have a TODO list below, but it is not all inclusive. It also works as a 'features list'.
 
-An example of the type of image produced is available on the wiki page.
-
-Images can be downloaded from the app and saved locally. 
 
 # Running the App:
 
@@ -46,9 +43,10 @@ You can see a demo of canvasrgbdrawer here: https://zwtodd.github.io/canvasrgbdr
 - Make images be resizable on the canvas. I found a code snippet to due that via CSS somewhere.
 - ~Make undo button for previous commit (Text or image). In progress...~
 - ~Add better font support.~
+- ~Add opacity support for temporary canvases (image and text)~
 
 # "Borrowed Code"
-This project is a learning expierence for me all around. Each item on the todo list is getting checked off and that is an awesome feeling. However, learning stuff for the sake of learning can almost be like reiventing the wheel. There are snippets of code that I have taken off sites like jsfiddle and stack exchange. Each snippet is commented with a link back to where I found it within the code. Any large portions or libraries or other repos are listed below.
+This project is a learning expierence for me all around. However, learning stuff for the sake of learning can almost be like reiventing the wheel. There are snippets of code that I have taken off sites like jsfiddle and stack exchange. Each snippet is commented with a link back to where I found it within the code. Any large portions or libraries or other repos are listed below.
 
 # External libraries
 - jQuery - https://jquery.com/
