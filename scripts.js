@@ -1,13 +1,40 @@
 // GLOBALS
-var savedCanvas = [];
-var imgDrawInterval;
+var savedCanvas = [],
+imgDrawInterval,
+maxFontSize = 122;
 
 // automatically update the canvas every 33.33ms (approx 30fps)
 function init() {
+	setFontSizeDropDown();
+	setFontFaceDropDown()
 	return setInterval(changeCanvas, 33.33);
 }
 
-
+// create options for fontSize drop down
+function setFontSizeDropDown() {
+	let selectInput = document.getElementById('addTxtFontSizeID');
+	let count = 2;
+	while(count <= maxFontSize) {
+		if(count === 32) {
+			selectInput.options[selectInput.options.length] = new Option(count, count + 'px', true, true);
+		} else {
+			selectInput.options[selectInput.options.length] = new Option(count, count + 'px');
+		}
+		count = count + 2;
+	}
+	loadFont('Sail');	// load the default selection for the text drop box to prevent hangup and displaying incorrect font
+}
+/* This will autopopulate the drop down list with each google font name from the array*/
+function setFontFaceDropDown() {
+	let selectInput = document.getElementById('addTxtFontID');
+	for(a in googleFontsArray) {
+		if(googleFontsArray[a] === 'Sail') {
+			selectInput.options[selectInput.options.length] = new Option(googleFontsArray[a], googleFontsArray[a], true, true);
+		} else {
+			selectInput.options[selectInput.options.length] = new Option(googleFontsArray[a], googleFontsArray[a]);
+		}
+	}
+}
 function drawCanvas( rgb, rgbgrad ) { // rgb/rgbgrad is optional parameter to be used after intial drawing on page load
 	rgb = rgb || 0;
 	rgbgrad = rgbgrad || 0;
@@ -156,6 +183,15 @@ function undoCommit() {
 	savedCanvas.pop();
 }
 
+// Container for WebFontLoader for Google Fonts
+var loadFont = function(font) {
+	WebFont.load({
+			google: {
+				families: [font]
+			}
+		});
+};
+
 // jquery: handles the toggling of div visibility based on which option is chosen.
 $(document).ready(function() {
 		$( '#gradientCheckBoxID' ).change( function() {
@@ -203,13 +239,11 @@ $(document).ready(function() {
 				if ($('#textCheckBoxID').is(':checked') || $('#imgCheckBoxID' ).is(':checked')) $('#textAndImgOptionsDiv').show();
 				if ($('#textCheckBoxID').is(':not(:checked)') && $('#imgCheckBoxID' ).is(':not(:checked)')) $('#textAndImgOptionsDiv').hide();
 			});
+			
+		// check for change to font face dropdown and load font accordingly
+		$('#addTxtFontID').change (function() {
+				let font = this.value;
+				loadFont(this.value);				
+			});
+
 	} );
-
-/*	
-function returnElId(id) { return document.getElementById(id); }
-
-$(document).ready(function() {
-document.getElementById("file-upload").addEventListener("change", drawImgs, false);
-});
-
-*/

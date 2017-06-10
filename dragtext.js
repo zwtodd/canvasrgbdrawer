@@ -37,12 +37,10 @@ function drawText() {
 	var userFontSelect = document.getElementById('addTxtFontID');
 	var userFontSizeSelect = document.getElementById('addTxtFontSizeID');
 	var userFontColor = document.getElementById('addTxtColorID').value;
+	var userFontSize = userFontSizeSelect.options[userFontSizeSelect.selectedIndex].value;
 		
 	var userFont = userFontSelect.options[userFontSelect.selectedIndex].value;
-	if(userFont == "") {
-		userFont = 'Courier New';
-	}
-	var userFontSize = userFontSizeSelect.options[userFontSizeSelect.selectedIndex].value;
+
 	
 	dragContext.beginPath();
 	dragContext.font = userFontSize + " " + userFont;
