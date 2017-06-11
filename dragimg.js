@@ -44,8 +44,6 @@ $(document).ready(function() {
 				ratio = maxWidth / width;   // get ratio for scaling image
 				newh = Math.round(height * ratio);    // Reset height to match scaled image
 				neww = Math.round(width * ratio);    // Reset width to match scaled image
-				console.log('neww1: ' + neww);
-				console.log('newh1: ' + newh);
 			}
 
 			// Check if current height is larger than max
@@ -53,9 +51,6 @@ $(document).ready(function() {
 				ratio = maxHeight / height; // get ratio for scaling image
 				newh = Math.round(height * ratio);    // Reset height to match scaled image
 				neww = Math.round(width * ratio);    // Reset width to match scaled image
-				console.log('neww2: ' + neww);
-				console.log('newh2: ' + newh);
-				
 			}
 			
 
@@ -77,7 +72,7 @@ $(document).ready(function() {
 				fileReader.readAsDataURL(event.dataTransfer.files[0]);
 			});
 			
-			// when the opacity slider changes, the image is redrawn with new globalAlpha setting in drawImage()
+		// when the opacity slider changes, the image is redrawn with new globalAlpha setting in drawImage()
 		changeOpacity.addEventListener('change', function(event) {
 				$.drawImage();
 			});
@@ -89,7 +84,6 @@ $(document).ready(function() {
 				context.save();
 				context.globalAlpha = document.getElementById('opacityRangeID').value;		// sets opacity of image via user input
 				context.drawImage(img, canMouseX, canMouseY, neww, newh);
-				console.log(context.globalAlpha);
 				context.restore();		
 			}
 		}

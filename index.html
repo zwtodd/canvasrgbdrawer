@@ -16,6 +16,10 @@
 					<canvas id="mainCanvas" class="mainCanvasCls" width="500" height="500">
 						[Canvas is unavailable in your browser. Consider updating...]
 					</canvas>
+					<canvas id="bgCanvas" class="bgCanvasCls" width="500" height="500">
+					</canvas>
+					<canvas id="textAndImageSavesCanvas" class="textAndImageSavesCanvasCls" width="500" height="500">
+					</canvas>
 					<canvas id="textCanvas" class="textCanvasCls hide" width="500" height="500">
 					</canvas>
 					<canvas id="imgCanvas" class="imgCanvasCls hide" width="500" height="500">
@@ -23,7 +27,7 @@
 				</div> <!-- END OF CANVAS WRAPPER -->
 				
 				<!-- color One sliders -->
-				<div id="colorOneSlidersID" class="colorSlidersCls smallerFont">
+				<div id="colorOneSlidersID" class="colorSlidersCls smallerFont hide">
 				
 					<div>
 						<label for="colorOneSlideRedID">Red:</label><br />
@@ -41,7 +45,7 @@
 				</div> <!-- END OF colorOneSliders WRAPPER -->
 				
 				<!-- color Two sliders for gradient-->
-				<div id="colorTwoSlidersID" class="hide smallerFont padOptions">
+				<div id="colorTwoSlidersID" class="hide smallerFont colorSlidersCls padOptions">
 				
 					<div>
 						<label for="colorTwoSlideRedID">Red:</label><br />
@@ -56,7 +60,7 @@
 						<input type="range" min="0" max="255" id="colorTwoSlideBlueID" name="colorTwoSlideBlue" value="192" oninput="colorTwoBlueValue.value=colorTwoSlideBlueID.value"/>
 					</div>
 				</div> <!-- END OF colorOneSliders WRAPPER -->
-
+				
 				<!--start gradient options div when second color is selected -->
 				<div id="gradientOptionsID"  class="hide smallerFont padOptions">
 					<div style="padding-right: 10px">
@@ -90,6 +94,12 @@
 					</div>
 				</div> <!-- END gradient options div -->
 				
+				<!-- start save colors div -->
+				<div id="saveBgDivID" class="hide">
+					<div>
+						<span onclick="saveTempCanvas('bgCanvas', 3)"><label for="commitBgBtnID" class="custom-label"><i class="fa fa-object-group" aria-hidden="true"></i> Commit Background</label></span><input type="button" id="saveBgBtnID" class="hiddenButton"/>
+					</div>
+				</div>
 				<!--Start add text options div -->
 				<div id="textOptionsID" class="hide padOptions">
 					<div class="smallerFont">
@@ -109,7 +119,7 @@
 							<input type="color" id="addTxtColorID"/>
 							<input type="checkbox" id="addTxtShadowID"/>
 							<label for="addTxtShadowID">Add Shadows</label>
-							<span onclick="saveTempCanvas('textCanvas', 1)"><label for="commitTextBtnID" class="custom-label"><i class="fa fa-download" aria-hidden="true"></i>Commit Text</label></span><input type="button" id="commitTextBtnID" class="hiddenButton"/>
+							<span onclick="saveTempCanvas('textCanvas', 1)"><label for="commitTextBtnID" class="custom-label"><i class="fa fa-file-word-o" aria-hidden="true"></i> Commit Text</label></span><input type="button" id="commitTextBtnID" class="hiddenButton"/>
 						</div>
 						
 					</div>
@@ -140,21 +150,21 @@
 				</div> <!-- ADD SHADOWS DIV END -->
 				
 				<!-- add image div start -->
-				<div id="imgDivID" class=" hide imgDivCls padOptions imgDivVAlign">
+				<div id="imgDivID" class=" hide imgDivCls padOptions imgDivVAlign smallerFont">
 					<div>
 	
 						<label for="file-upload" class="custom-label">
 							<i class="fa fa-camera-retro" aria-hidden="true"></i> Upload
 						</label>
 						<input id="file-upload" type="file"/>
-						<span onclick="saveTempCanvas('imgCanvas', 2)"><label for="commitImgBtnID" class="custom-label"><i class="fa fa-download" aria-hidden="true"></i>Commit Image</label></span><input type="button" id="commitImgBtnID" class="hiddenButton"/>
+						<span onclick="saveTempCanvas('imgCanvas', 2)"><label for="commitImgBtnID" class="custom-label"><i class="fa fa-file-image-o" aria-hidden="true"></i> Commit Image</label></span><input type="button" id="commitImgBtnID" class="hiddenButton"/>
 					</div>
 					<div><p class="p_nospace">max size 500x500</p></div>
 					
 				</div><!-- ADD IMAGE DIV END -->
 				
 				<!-- Options for both text and images -->
-				<div id="textAndImgOptionsDiv" class="hide">
+				<div id="textAndImgOptionsDiv" class="hide smallerFont">
 					<div class="textAndImgOptionsClass valuesCls textBoxTinySizeValues">
 						<div id="opacityRangeDivID">
 							<div style="text-align: center;">
@@ -171,29 +181,33 @@
 					
 			</div> <!-- END LEFT WRAPPER -->
 			
-			<!-- Right wrapper for content -->
+			<!-- Right wrapper for options and values -->
 			<div id="rightWrprID" class="rightWrprCls">
 				<div id="canvasOptionsID" class="valuesCls">
 					<div><p class="p_nospace">Canvas Options:</p></div>
 					<div>
-						<input type="checkbox" id="drawCircleCheckBoxID" class="drawCircleCheckBoxCls"/>
-						<label for="drawCircleCheckBoxID">Draw Circle:</label>
+						<input type="checkbox" id="changeColorsCheckBoxID" class="changeColorCheckBoxCls"/>
+						<label for="changeColorsCheckBoxID"> Background Color</label>	
 					</div>
-					<div>
+					<div id="drawCircleDivID" class="hide">
+						<input type="checkbox" id="drawCircleCheckBoxID" class="drawCircleCheckBoxCls"/>
+						<label for="drawCircleCheckBoxID"> Draw Circle</label>
+					</div>
+					<div id='gradientDivID' class="hide">
 						<input type="checkbox" id="gradientCheckBoxID" class="gradientCheckBoxCls"/>
-						<label for="gradientCheckBoxID">Gradient:</label>
+						<label for="gradientCheckBoxID"> Add Gradient</label>
 					</div>
 					<div>
 						<input type="checkbox" id="textCheckBoxID" class="textCheckBoxCls textAndImgClass"/>
-						<label for="textCheckBoxID">Add Text:</label>
+						<label for="textCheckBoxID"> Add Text</label>
 					</div>
 					<div>
 						<input type="checkbox" id="imgCheckBoxID" class="imgCheckBoxCls textAndImgClass"/>
-						<label for="imgCheckBoxID">Add Image:</label>
+						<label for="imgCheckBoxID"> Add Image</label>
 					</div>
 				</div>
 				<!-- color values from slider values inputted into text box on right wrapper -->
-				<div id="colorOneValues" class="valuesCls">
+				<div id="colorOneValues" class="valuesCls hide">
 					<div><p class="p_nospace">Color One:</p></div>
 					<div>
 						<label for="colorOneRedValue">R:</label>
@@ -245,6 +259,9 @@
 					</div>
 
 				</div> <!-- END COLOR SLIDERS VALUES DIVS -->
+				<div id="clearMainCanvasDivID" class="downloadStyle">
+					<div class="downloadStyle"><span onclick="clearMainCanvas()"><label for="clearMainCanvasDivID" class="custom-label"><i class="fa fa-eraser" aria-hidden="true"></i> Clear Canvas</label></span><input type="button" id="clearMainCanvasButtonID" class="hiddenButton"/></div>
+				</div>
 				<div id="downloadLinkDivID" class="downloadStyle">
 					<div class="downloadStyle"><span onclick="downloadCanvas()"><label for="downloadButtonID" class="custom-label"><i class="fa fa-download" aria-hidden="true"></i> Download PNG</label></span><input type="button" id="downloadButtonID" class="hiddenButton"/></div>
 				</div>

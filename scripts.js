@@ -1,9 +1,10 @@
 // GLOBALS
-var savedCanvas = [],
-imgDrawInterval,
-maxFontSize = 122;
+var savedCanvas = [],			// array to hold committed canvas (aka layers, in a sense)
+savedBgCanvas = 0,			// holds the bg canvas. only one needed, is drawn first before savedCanas[],
+imgDrawInterval,			// set to 33.33ms when adding images for 30fps during mouse movement (Except in IE for whatever reason)
+maxFontSize = 122;			// max font size allowed during font size lst creation
 
-// automatically update the canvas every 33.33ms (approx 30fps)
+// automatically update the canvas every 33.33ms (approx 30fps) and populate drop down lists with options
 function init() {
 	setFontSizeDropDown();
 	setFontFaceDropDown()
@@ -38,15 +39,19 @@ function setFontFaceDropDown() {
 function drawCanvas( rgb, rgbgrad ) { // rgb/rgbgrad is optional parameter to be used after intial drawing on page load
 	rgb = rgb || 0;
 	rgbgrad = rgbgrad || 0;
-	var canvas = document.getElementById( 'mainCanvas' );
+	var canvas = document.getElementById( 'bgCanvas' );
 	var context = canvas.getContext( '2d' );
+	var mainCanvas = document.getElementById( 'mainCanvas' );
+	var mainContext = mainCanvas.getContext( '2d' );
 	var centerX = canvas.width / 2;
 	var centerY = canvas.height / 2;
 	var linearX = document.getElementById( 'linearColorStopID' ).value;
 	var radius = 250;
 	var grd = 0; // slotted for type of gradient later, if not used, skipped at drawing
-	// gradient check, rgbgrad will equal zero if gradient is not turned on
+
 	if ( rgbgrad !== 0 ) {
+
+		// gradient check, rgbgrad will equal zero if gradient is not turned on
 		// Radii of the inner color.
 		var innerRadius = document.getElementById( 'radialInnerMaxID' ).value;
 		var outerRadius = document.getElementById( 'radialOuterMaxID' ).value;
@@ -64,13 +69,15 @@ function drawCanvas( rgb, rgbgrad ) { // rgb/rgbgrad is optional parameter to be
 		grd.addColorStop( 1, rgbgrad );
 	}
 	context.beginPath();
-	if ( rgbgrad === 0 ) {
-		if ( rgb !== 0 ) {
-			context.fillStyle = rgb;
-		} else {
-			context.fillStyle = "rgb(91,111,192)"; // default color on page load
-		}
-	} else {
+	mainContext.beginPath();
+	if(savedBgCanvas !== 0) {						// draws the saved background to the main canvas
+		mainContext.clearRect( 0, 0, mainCanvas.width, mainCanvas.height );
+		mainContext.drawImage(savedBgCanvas,0,0);
+	}
+	
+	if ( rgbgrad === 0 ) {			// if no gradient, draw one color background
+		context.fillStyle = rgb;
+	} else {						// with gradient
 		context.fillStyle = grd; // fill gradient
 	}
 	//checks to see if user wants a circle or rectangle drawn
@@ -92,11 +99,16 @@ function drawCanvas( rgb, rgbgrad ) { // rgb/rgbgrad is optional parameter to be
 	if(savedCanvas.length > 0) {
 		let len = 0;
 		while(len < savedCanvas.length) {
-			context.drawImage(savedCanvas[len], 0, 0); //the true context of the canvas
+			mainContext.drawImage(savedCanvas[len], 0, 0);	// writes saved canvas in order of commit to both canvas
+			drawtextAndImageSavesCanvas();
 			len++;
 		}
-	}
 
+	}
+	if(savedCanvas.length < 1) {		//nothing in array, run functon to clear the canvas
+		drawtextAndImageSavesCanvas();
+	}
+	mainContext.closePath();
 	context.closePath();
 
 } // END OF drawCanvas()
@@ -156,31 +168,112 @@ function downloadCanvas() {
 
 // saves the temporary canvas (img or text) into the saved canvas array for later redrawing in drawCanvas()
 function saveTempCanvas(canvas,whichCanvas) {		// canvas = which temp canvasto save from. whichCanvas signifies what specific inputs to clear. if text is committed, clears the text input, or if image is comitted, clears the file input
+	/* whichCanvas values:
+	1 - Text
+	2 - images
+	3 - background
+	*/
 	var tcanvas = document.getElementById( canvas );
 	var tcxt = tcanvas.getContext('2d');
+	var textAndImageSavesCanvas = document.getElementById('textAndImageSavesCanvas'); 	// holds data temporarily so when user changes background, layers are still visible
+	var textAndImageSavesCtx = textAndImageSavesCanvas.getContext('2d');
 	var timg = new Image();
 	timg.src = tcanvas.toDataURL("image/png");
-	savedCanvas.push(timg);
+	if(whichCanvas !== 3) {
+		savedCanvas.push(timg);
+	} else {
+		savedBgCanvas = timg;
+	}
 	switch(whichCanvas) {
 		case 1:
 		document.getElementById('addTxtBxID').value = "";  // remove text from input field
 		reInitTextVars(); // from dragtext.js, resets the x and y of text coords back to original spots
 		break;
+		
 		case 2:
 		document.getElementById('file-upload').value = ""; //set input for image upload to null to clear
 		imgCommitted = true;		//imgCommitted is declared as global in dragimg.js
 		tcxt.clearRect( 0, 0, tcanvas.width, tcanvas.height );
 		break;
-	}
+		
+		/* When committing the background, hide all the associated divs */
+		case 3:
+		document.getElementById('changeColorsCheckBoxID').checked = false;
+		document.getElementById('gradientCheckBoxID').checked = false;
+		if(!$('#bgCanvas').hasClass('hide')) {
+			$( "#bgCanvas" ).addClass("hide");
+		}
+		if(!$('#drawCircleDivID').hasClass('hide')) {
+			$( "#drawCircleDivID" ).addClass("hide");
+		}
+		if(!$('#gradientDivID').hasClass('hide')) {
+			$( "#gradientDivID" ).addClass("hide");
+		}
+		if(!$('#saveBgDivID').hasClass('hide')) {
+			$( "#saveBgDivID" ).addClass("hide");
+		}
+		if(!$('#colorOneSlidersID').hasClass('hide')) {
+			$( "#colorOneSlidersID" ).addClass("hide");
+		}
+		if(!$('#colorTwoSlidersID').hasClass('hide')) {
+			$( "#colorTwoSlidersID" ).addClass("hide");
+		}
+		if(!$('#gradientOptionsID').hasClass('hide')) {
+			$( "#gradientOptionsID" ).addClass("hide");
+		}
+		if(!$('#colorOneValues').hasClass('hide')) {
+			$( "#colorOneValues" ).addClass("hide");
+		}
+		if(!$('#colorTwoValues').hasClass('hide')) {
+			$( "#colorTwoValues" ).addClass("hide");
+		}
+		break;
+	}	// end switch statement for canvas types
 	
 	//reset opacity slider and value textbox to full opacity
 	document.getElementById('opacityRangeID').value = 1;
 	document.getElementById('opacityRangeValID').value = 1;
+	
 }
 
 // clears the last commit saved to savedCanvas[]. This will remove it from the drawing sequence in drawCanvas()
 function undoCommit() {
 	savedCanvas.pop();
+}
+
+// Clears the main canvas of all commits, and the temp textAndImageSaves canvas of held data
+function clearMainCanvas() {
+	var canvas = document.getElementById('mainCanvas');
+	var context = canvas.getContext('2d');
+	var bgcanvas = document.getElementById('bgCanvas');
+	var bgcontext = bgcanvas.getContext('2d');
+	var textAndImageSavesCanvas = document.getElementById('textAndImageSavesCanvas');
+	var textAndImageSavesCtx = textAndImageSavesCanvas.getContext('2d');
+	savedBgCanvas = 0;
+	savedCanvas = [];
+	context.clearRect( 0, 0, canvas.width, canvas.height );
+	textAndImageSavesCtx.clearRect( 0, 0, canvas.width, canvas.height );
+	bgcontext.fillStyle = 'rgb(255,255,255)';
+	bgcontext.fillRect(0, 0, bgcanvas.width, bgcanvas.height);
+	bgcontext.fill();
+	if($(bgcanvas).hasClass('hide')) {
+		$(bgcanvas).removeClass('hide');
+	}
+}
+
+function drawtextAndImageSavesCanvas() {
+	var canvas = document.getElementById('textAndImageSavesCanvas');
+	var ctx = textAndImageSavesCanvas.getContext('2d');
+	
+	ctx.clearRect(0,0,canvas.width,canvas.height);
+	if(savedCanvas.length > 0) {
+		let len = 0;
+		while(len < savedCanvas.length) {
+			ctx.drawImage(savedCanvas[len], 0, 0);	// writes saved canvas in order of commit to both canvas
+			len++;
+		}
+	}
+
 }
 
 // Container for WebFontLoader for Google Fonts
@@ -193,15 +286,68 @@ var loadFont = function(font) {
 };
 
 // jquery: handles the toggling of div visibility based on which option is chosen.
-$(document).ready(function() {
+$(document).ready(function() { 
+		$( '#changeColorsCheckBoxID' ).change( function() {
+				$( "#bgCanvasID" ).toggleClass("hide");
+
+				if(document.getElementById('changeColorsCheckBoxID').checked == false) {
+					document.getElementById('gradientCheckBoxID').checked = false; 
+					if(!$('#bgCanvas').hasClass('hide')) {
+						$( "#bgCanvas" ).toggleClass("hide");
+					}
+					if(!$('#drawCircleDivID').hasClass('hide')) {
+						$( "#drawCircleDivID" ).addClass("hide");
+					}
+					if(!$('#gradientDivID').hasClass('hide')) {
+						$( "#gradientDivID" ).addClass("hide");
+					}
+					if(!$('#saveBgDivID').hasClass('hide')) {
+						$( "#saveBgDivID" ).addClass("hide");
+					}
+					if(!$('#colorOneSlidersID').hasClass('hide')) {
+						$( "#colorOneSlidersID" ).addClass("hide");
+					}
+					if(!$('colorTwoSlidersID').hasClass('hide')) {
+						$( "#colorTwoSlidersID" ).addClass("hide");
+					}
+					if(!$('#gradientOptionsID').hasClass('hide')) {
+						$( "#gradientOptionsID" ).addClass("hide");
+					}
+					if(!$('#colorOneValues').hasClass('hide')) {
+						$( "#colorOneValues" ).addClass("hide");
+					}
+					if(!$('#colorTwoValues').hasClass('hide')) {
+						$( "#colorTwoValues" ).addClass("hide");
+					}
+				}
+				if(document.getElementById('changeColorsCheckBoxID').checked == true){
+					if($('#bgCanvas').hasClass('hide')) {
+						$( "#bgCanvas" ).toggleClass("hide");
+					}
+					if($('#drawCircleDivID').hasClass('hide')) {
+						$( "#drawCircleDivID" ).toggleClass("hide");
+					}
+					if($('#gradientDivID').hasClass('hide')) {
+						$( "#gradientDivID" ).toggleClass("hide");
+					}
+					if($('#saveBgDivID').hasClass('hide')) {
+						$( "#saveBgDivID" ).toggleClass("hide");
+					}
+					if($('#colorOneSlidersID').hasClass('hide')) {
+						$( "#colorOneSlidersID" ).toggleClass("hide");
+					}
+					if($('#colorOneValues').hasClass('hide')) {
+						$( "#colorOneValues" ).toggleClass("hide");
+					}
+				}
+			} );
+			
 		$( '#gradientCheckBoxID' ).change( function() {
 				$( "#colorTwoSlidersID" ).toggleClass("hide");
-				$( "#colorTwoSlidersID" ).toggleClass("colorSlidersCls");
 				$( "#gradientOptionsID" ).toggleClass("hide");
-				$( "#gradientOptionsID" ).toggleClass("gradientOptionsCls");
 				$( "#colorTwoValues" ).toggleClass("hide");
-
 			} );
+
 		$("[name=linearOrRadial]").click(function(){
 				$('.hideClassJQ').hide();
 				$("#gradient-"+$(this).val()).show();
