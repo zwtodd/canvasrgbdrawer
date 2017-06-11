@@ -44,6 +44,7 @@ You can see a demo of canvasrgbdrawer here: https://zwtodd.github.io/canvasrgbdr
 - ~Make undo button for previous commit (Text or image). In progress...~
 - ~Add better font support.~
 - ~Add opacity support for temporary canvases (image and text)~
+- ~Save background color in own canvas, make mainCanvas just for saving proposes (akin to photoshop 'merge layers down' method.~
 
 # "Borrowed Code"
 This project is a learning expierence for me all around. However, learning stuff for the sake of learning can almost be like reiventing the wheel. There are snippets of code that I have taken off sites like jsfiddle and stack exchange. Each snippet is commented with a link back to where I found it within the code. Any large portions or libraries or other repos are listed below.
