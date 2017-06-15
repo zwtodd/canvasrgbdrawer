@@ -100,14 +100,17 @@ function drawCanvas( rgb, rgbgrad ) { // rgb/rgbgrad is optional parameter to be
 		let len = 0;
 		while(len < savedCanvas.length) {
 			mainContext.drawImage(savedCanvas[len], 0, 0);	// writes saved canvas in order of commit to both canvas
-			drawtextAndImageSavesCanvas();
 			len++;
 		}
 
 	}
-	if(savedCanvas.length < 1) {		//nothing in array, run functon to clear the canvas
+	
+	if(document.getElementById('changeColorsCheckBoxID').checked) {		// if user changing bg of the canvas, make the temporary canvas for committed images and text visible so it will display commits
 		drawtextAndImageSavesCanvas();
+	} else if(!($ ('#textAndImageSavesCanvas').hasClass('hide'))) {		// if not changing the background of canvas, hide this canvas.
+		$ ('#textAndImageSavesCanvas').addClass('hide');
 	}
+	
 	mainContext.closePath();
 	context.closePath();
 
@@ -167,7 +170,7 @@ function downloadCanvas() {
 }
 
 // saves the temporary canvas (img or text) into the saved canvas array for later redrawing in drawCanvas()
-function saveTempCanvas(canvas,whichCanvas) {		// canvas = which temp canvasto save from. whichCanvas signifies what specific inputs to clear. if text is committed, clears the text input, or if image is comitted, clears the file input
+function saveTempCanvas(canvas,whichCanvas) {		// canvas = which temp canvas to save from. whichCanvas signifies what specific inputs to clear. if text is committed, clears the text input, or if image is comitted, clears the file input
 	/* whichCanvas values:
 	1 - Text
 	2 - images
@@ -175,8 +178,6 @@ function saveTempCanvas(canvas,whichCanvas) {		// canvas = which temp canvasto s
 	*/
 	var tcanvas = document.getElementById( canvas );
 	var tcxt = tcanvas.getContext('2d');
-	var textAndImageSavesCanvas = document.getElementById('textAndImageSavesCanvas'); 	// holds data temporarily so when user changes background, layers are still visible
-	var textAndImageSavesCtx = textAndImageSavesCanvas.getContext('2d');
 	var timg = new Image();
 	timg.src = tcanvas.toDataURL("image/png");
 	if(whichCanvas !== 3) {
@@ -261,10 +262,19 @@ function clearMainCanvas() {
 	}
 }
 
+
+/*
+** This canvas is visible when the user is changing the background
+** it fakes keeping all commits to the front layer so they are still
+** visible when altering the background. It is hidden when user is not
+** actively changing the background.
+*/
 function drawtextAndImageSavesCanvas() {
 	var canvas = document.getElementById('textAndImageSavesCanvas');
 	var ctx = textAndImageSavesCanvas.getContext('2d');
-	
+	if($ ('#textAndImageSavesCanvas').hasClass('hide')) {
+		$ ('#textAndImageSavesCanvas').removeClass('hide');
+	}
 	ctx.clearRect(0,0,canvas.width,canvas.height);
 	if(savedCanvas.length > 0) {
 		let len = 0;
